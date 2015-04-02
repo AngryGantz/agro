@@ -1,0 +1,38 @@
+<script type="text/javascript">
+function comment(){
+	parent.document.getElementById("showcomment").innerHTML=document.getElementById("comment").innerHTML;
+}
+</script>
+<body onload="comment()">
+<div id="comment">
+{if $comment}
+	{loop $comment $comment}
+<div class="blog-comment middle-color">
+<strong class="dark-color">{$comment[username]}</strong>
+ {$comment[postdate]}
+<p>{nl2br($comment[content])}</p>
+</div>
+<div class="margin-bottom"><hr /></div>
+	{/loop}
+<div class="well-shadow well-box cream-bg px13 f_gray">
+{$L['mp_total_records']}: {$pager[count]}&nbsp;&nbsp;{$L['mp_displaying_pages']}: <font color="red">{$pager[page]}</font> {$L['mp_of']} {$pager[page_count]}&nbsp;&nbsp;{$L['mp_data_page']}: {$pager[size]}&nbsp;&nbsp;
+</div>
+<div class="page">
+	<!--{if $pager[first]}-->
+	<a class="pager-page" href="{$pager[first]}" target='icomment'>{$L['mp_first']}</a>
+	<!--{else}--><!--{/if}-->
+	<!--{if $pager[prev]}-->
+	<a class="pager-page" href="{$pager[prev]}" target='icomment'>{$L['mp_previous']}</a>
+	<!--{else}--><!--{/if}-->
+	<!--{if $pager[next]}-->
+	<a class="pager-page" href="{$pager[next]}" target='icomment'>{$L['mp_next']}</a>
+	<!--{else}--><!--{/if}-->
+	<!--{if $pager[last]}-->
+	<a class="pager-page" href="{$pager[last]}" target='icomment'>{$L['mp_last']}</a>
+	<!--{else}--><!--{/if}-->
+
+</div>
+</div>
+{else}
+ <div class="grid-100 well well-box cream-bg">{$L['no_comments_yet']}</div>
+{/if}

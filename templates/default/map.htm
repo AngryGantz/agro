@@ -1,0 +1,187 @@
+<html style="height:100%">
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset={$charset}" />
+<link rel="stylesheet" href="templates/{$CFG[tplname]}/style/map.css" type="text/css" />
+<script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript">
+  var map;
+  var geocoder;
+  var centerChangedLast;
+  var reverseGeocodedLast;
+  var currentReverseGeocodeResponse;
+
+  function initialize() {
+    var latlng = new google.maps.LatLng(55.75,37.61);
+    var myOptions = {
+      zoom: 12,
+      center: latlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+    geocoder = new google.maps.Geocoder();
+
+
+    setupEvents();
+    centerChanged();
+  }
+
+  function setupEvents() {
+    reverseGeocodedLast = new Date();
+    centerChangedLast = new Date();
+
+    setInterval(function() {
+      if((new Date()).getSeconds() - centerChangedLast.getSeconds() > 1) {
+        if(reverseGeocodedLast.getTime() < centerChangedLast.getTime())
+          reverseGeocode();
+      }
+    }, 1000);
+
+    google.maps.event.addListener(map, 'zoom_changed', function() {
+      document.getElementById("zoom_level").innerHTML = map.getZoom();
+    });
+
+    google.maps.event.addListener(map, 'center_changed', centerChanged);
+
+    google.maps.event.addDomListener(document.getElementById('crosshair'),'dblclick', function() {
+       map.setZoom(map.getZoom() + 1);
+    });
+
+  }
+
+  function getCenterLatLngText() {
+    return '(' + map.getCenter().lat() +', '+ map.getCenter().lng() +')';
+  }
+
+  function centerChanged() {
+    centerChangedLast = new Date();
+    var latlng = getCenterLatLngText();
+    document.getElementById('latlng').innerHTML = latlng;
+    document.getElementById('formatedAddress').innerHTML = '';
+	Vup("mappoint").value = '' + map.getCenter().lat() +', '+ map.getCenter().lng() +'';
+    currentReverseGeocodeResponse = null;
+  }
+  
+
+  
+  function reverseGeocode() {
+    reverseGeocodedLast = new Date();
+    geocoder.geocode({latLng:map.getCenter()},reverseGeocodeResult);
+  }
+
+  function reverseGeocodeResult(results, status) {
+    currentReverseGeocodeResponse = results;
+    if(status == 'OK') {
+      if(results.length == 0) {
+        document.getElementById('formatedAddress').innerHTML = 'None';
+      } else {
+        document.getElementById('formatedAddress').innerHTML = results[0].formatted_address;
+			Vup("address").value = results[0].formatted_address;
+      }
+    } else {
+      document.getElementById('formatedAddress').innerHTML = 'Error';
+    }
+  }
+
+
+  function geocode() {
+    var address = document.getElementById("address").value;
+    geocoder.geocode({
+      'address': address,
+      'partialmatch': true}, geocodeResult);
+  }
+
+  function geocodeResult(results, status) {
+    if (status == 'OK' && results.length > 0) {
+      map.fitBounds(results[0].geometry.viewport);
+    } else {
+      alert("{$L['geocode_status']}: " + status);
+    }
+  }
+
+  function addMarkerAtCenter() {
+    var marker = new google.maps.Marker({
+        position: map.getCenter(),
+         icon: 'templates/{$CFG[tplname]}/images/icons/icon-custom-marker.png',
+        map: map
+    });
+
+    var text = '{$L['coordinates']}: ' + getCenterLatLngText();
+    if(currentReverseGeocodeResponse) {
+      var addr = '';
+      if(currentReverseGeocodeResponse.size == 0) {
+        addr = 'None';
+      } else {
+        addr = currentReverseGeocodeResponse[0].formatted_address;
+      }
+      text = text + '<br>' + '{$L['address']}: <br>' + addr;
+    }
+
+    var infowindow = new google.maps.InfoWindow({ content: text });
+
+    google.maps.event.addListener(marker, 'click', function() {
+      infowindow.open(map,marker);
+    });
+  }
+
+</script>
+</head>
+<body onload="initialize()">
+<table cellpadding="0" cellspacing="1" width="100%" class="gridTable">
+<tr>
+<td class="gridHeader" colspan="2" style="text-align: left">
+  {$L['your_address']}: <input type="text" class="inputText" style="width:300px;" id="address"/>
+  <input type="button" class="btn" value="{$L['f_search']}" onclick="geocode()">
+  <input type="button" class="btn" value="{$L['marker']}" onclick="addMarkerAtCenter()"/>
+    </td>
+</tr>
+  </table>
+  <div id="map">
+    <div id="map_canvas" style="width:100%; height:300px"></div>
+    <div id="crosshair"></div>
+  </div>
+
+<table cellpadding="0" cellspacing="1" width="100%" class="gridTable">
+<tr class="gridTr1">
+<td class="gridHeader">{$L['coordinates']}:</td>
+<td class="gridHeader"><div id="latlng"></div></td></tr>
+<tr class="gridTr1">
+<td class="gridHeader">{$L['address']}:</td>
+<td class="gridHeader"><div id="formatedAddress"></div></td></tr>
+<tr class="gridTr1">
+<td class="gridHeader">{$L['scale']}:</td>
+<td class="gridHeader"><div id="zoom_level">12</div></td>
+</tr>
+{if $mark=='1'}
+<tr class="gridTr1">
+<td class="gridHeader" colspan="2" style="text-align: center">
+<input type="button" value="{$L['chose']}" onclick="closemap();" class="btn f_red">
+    </td>
+</tr>
+{/if}
+	
+  </table>
+
+<script type="text/javascript">
+var map_id = 'mymap';
+var p1 = '{$p1}';
+var p2 = '{$p2}';
+var mark = 'mark';
+var show = '{$show}';
+var title = '{$title}';
+var content = '{$content}';
+var width = {$width};
+var height = {$height};
+var view_level = {$level};
+</script>
+<script language="javascript">
+function closemap() {
+		if(!confirm('{$L['your_address_confirm']}')) return false;
+	parent.Yubox.close();
+}
+</script>
+
+</body>
+</html>

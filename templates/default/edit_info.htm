@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/my-profile.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    {if $_userid}<a href="member.php" class="dark-color active-hover">{$L['f_control_panel']}</a>{/if}
+                    <strong class="active-color">{$L['modifying_topic']}</strong>
+                </div>
+            </div> <!-- END Page block  -->
+
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+                <div class="sidebar-shadow push-25"></div>
+					{template member_left}
+               <!-- Content  --> 
+               <div class="content-with-sidebar grid-75">
+			   <form class="content-form" name="edit" method="post" onSubmit="return chkedit()" action="member.php" enctype="multipart/form-data">
+                            <h2 class="bigger-header with-border subheader-font">
+                                {$L['summary_information']}
+                            </h2>
+							
+                                <div class="form-input">
+                                    <label for="areaid" class="middle-color"><span class="f_b f_red px18">*</span> {$L['area']}</label>
+								<div class="custom-selectbox dark-color light-gradient active-hover">
+									<select name="areaid" id="areaid">
+										<option value="">-- {$L['select']} --</option>
+										 {$info_area}
+									</select>
+								</div>
+                                </div>	
+							
+
+                                <div class="form-input">
+                                    <label for="title" class="middle-color"><span class="f_b f_red px18">*</span> {$L['name']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" value="{$title}" name="title" id="title" style="width:500px;"/>
+                                </div>
+			   
+                                <div class="form-input">
+                                    <label for="keyword" class="middle-color">{$L['keywords']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" value="{$keyword}" name="keyword" id="keyword" style="width:400px;" />
+									<p class="middle-color">{$L['keywords_tip']}</p>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="enddate" class="middle-color">{$L['term_days']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" name="enddate" id="enddate" value="{$lastdate}" style="width:80px;" onKeyUp="value=value.replace(/\D+/g,'')"/>
+									<p class="middle-color">{$L['term_days_tip']}</p>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="price" class="middle-color">{$L['price']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" name="price" id="price" value="{$price}" style="width:100px;"/>
+                                        <div class="custom-selectbox dark-color light-gradient active-hover" style="width:120px;">
+                                            <select name="unit" id="unit">
+											<option value="{$unit}" selected>{$unit}</option>
+                                                <option value="KZT">KZT</option>
+                                                <option value="RUB">RUB</option>
+                                                <option value="USD">USD</option>
+                                                <option value="EUR">EUR</option>
+                                            </select>
+                                        </div>
+                                </div>
+
+					            {loop $custom $item}
+                                <div class="form-input">
+                                    <label for="custom" class="middle-color">{$item[cusname]}</label>
+                                    {$item[html]}
+                                </div>
+					            {/loop}
+								
+                                <div class="form-input">
+                                    <label for="content" class="middle-color"><span class="f_b f_red px18">*</span> {$L['content']}</label>
+                                   <textarea class="textarea-input dark-color light-bg" name="content" id="content">{$content}</textarea>
+									<span class="tips" id="tip_span_content"></span>
+                                </div>
+								
+					            {if $CFG[youtube_check]==1}
+                                <div class="form-input">
+                                    <label for="youtube" class="middle-color">{$L['youtube']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" value="{$youtube}" name="youtube" id="youtube" style="width:500px;"/>
+					                <p class="middle-color">{$L['youtube_tip']}</p>
+                                </div>
+								{/if}
+								
+								
+									 <div class="form-input">
+										<label for="image" class="middle-color">{$L['image']}</label>
+										<div class="controls">
+								{if $images}
+                               {loop $images $image}
+							   <span style="text-align:center"><img src="../{$image[path]}" width="70" height="70" border="1" style="color:#000000"><a href="member.php?act=delimg&imgid={$image[imgid]}"> <i rel="tooltip" title="{$L['delete']}" class="icon-remove-circle"></i></a></span>
+							    {/loop}
+								{/if}
+
+										</div>
+									</div>
+									
+									 <div class="form-input">
+										<div class="controls">
+										  <? for($i=1;$i<=$img_count;$i++){?><input type="file" class="input-large" name="file<?=$i?>" />
+										  <?}?>
+										</div>
+									</div>
+								
+                            <h2 class="bigger-header with-border subheader-font">
+                                {$L['contact_details']}
+                            </h2>
+
+                                <div class="form-input">
+                                    <label for="linkman" class="middle-color"><span class="f_b f_hid px18">*</span> {$L['name_surname']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="linkman" id="linkman" value="{$linkman}" />
+                                </div>
+								
+				          <div class="grid-100 well well-box cream-bg">
+
+                                <div class="form-input">
+                                    <label for="email" class="middle-color"><span class="f_b f_hid px18">*</span> E-mail</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="email" id="email" value="{$email}" placeholder="E-mail"/>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="phone" class="middle-color"><span class="f_b f_hid px18">*</span> {$L['phone']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="phone" id="phone" value="{$phone}" placeholder="{$L['phone']}"/>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="icq" class="middle-color"><span class="f_b f_hid px18">*</span> Skype</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="icq" id="icq" value="{$icq}" placeholder="Skype"/>
+                                </div>
+									<p class="middle-color"><strong>{$L['given_one_three_contacts']}</strong></p>	
+                         </div>
+								
+                                <div class="form-input">
+                                    <label for="address" class="middle-color">{$L['address']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:400px;" name="address" id="address" value="{$address}"/>
+                                </div>		
+								
+					            {if $CFG[map_check]==1}							
+                                <div class="form-input">
+                                    <label for="mappoint" class="middle-color">{$L['coordinates']}</label>
+					<script type="text/javascript" src="js/msgbox/msgbox.js"></script>
+					<link href="js/msgbox/msgbox.css" type="text/css" rel="stylesheet" />
+                    <input type="text" class="text-input dark-color light-bg" style="width:400px;" name="mappoint" id="mappoint" value="{$mappoint}" readonly="readonly" autocomplete="off"/>
+					<input name="markmap" type="button" value="{$L['map']}" class="button-normal active-gradient light-color dark-gradient-hover" onclick="Yubox.win('do.php?act=small_map&mark=1&width=700&height=450&p={$CFG[map]}',700,540,'{$L['map']}',null,null,null,true);">
+					<p class="middle-color">{$L['map_check_tip']}</p>
+                        </div>
+								{/if}
+								
+					<div class="align-center">
+					<input type="hidden" name="id" value="{$id}" />
+					<input type="hidden" name="act" value="updateinfo" />
+					<input type="hidden" name="thumb" value="{$thumb}" />
+                    <input type="submit" name="submit" class="button-normal active-gradient light-color dark-gradient-hover" value="{$L['change']}" id="submit" />					
+                    </div> 
+
+                        </div>
+
+                    </form>
+                </div><!-- END Content  -->
+
+            </div><!-- END Page block  -->
+
+        </section>
+
+<script type="text/javascript">
+function chkedit(){
+	if(document.edit.title.value==""){
+		alert('{$L['title_empty']}');
+		document.edit.title.focus();
+		return false;
+	}
+	if(document.edit.title.value.length>80 || document.edit.title.value.length<5){
+		alert('{$L['f_limit_5_80_characters']}');
+		document.edit.title.focus();
+		return false;
+	}
+	if(document.edit.areaid.value==0){
+		alert('{$L['areaid_empty']}');
+		document.edit.areaid.focus();
+		return false;
+	}
+
+	if(document.edit.content.value==""){
+		alert('{$L['content_empty']}');
+		document.edit.content.focus();
+		return false;
+	}
+	if(document.edit.phone.value=="" && document.edit.icq.value=="" && document.edit.email.value==""){
+		alert('{$L['given_one_three_contacts']}');
+		document.edit.phone.focus();
+		return false;
+	}
+
+}
+</script>
+{template footer}

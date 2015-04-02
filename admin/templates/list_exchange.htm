@@ -1,0 +1,83 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-th"></i> <? echo $L['flow_funds']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="exchange.php"><? echo $L['flow_funds']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-th"></i>
+								<span><? echo $L['flow_funds']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<div class="highlight-toolbar">
+							<div class="pull-left">
+							<div class="btn-toolbar">
+     <form class='form-horizontal' name="search" method="post">
+        <select name="type" id="type" style="width:120px;">
+        <option value=""><? echo $L['currency']; ?></option>
+		<option value="money" <?=($type == 'money') ? 'selected' : ''?>><? echo $CFG['currency']; ?></option>
+		<option value="credit" <?=($type == 'credit') ? 'selected' : ''?>><? echo $L['max_points']; ?></option> 
+        </select>
+		&nbsp;&nbsp;
+        <input name="username" type="text" id="username" value="<?=$username?>" placeholder="<? echo $L['login']; ?>" style="width:150px;">
+&nbsp;&nbsp;
+<input name="begindate" type="text" id="begindate" placeholder="<? echo $L['start_date']; ?>" class="input-medium datepick" data-date="2012-12-02" data-date-format="yyyy-mm-dd" value="<?=$begindate?>" readonly="readonly">
+&nbsp;&nbsp;
+<input name="enddate" type="text" id="enddate" placeholder="<? echo $L['expiration_date']; ?>" class="input-medium datepick" data-date="2012-12-02" data-date-format="yyyy-mm-dd" value="<?=$enddate?>" readonly="readonly">
+&nbsp;&nbsp;
+        <input name="search" type="submit" class="button button-basic button-large" value="<? echo $L['search']; ?>">
+		 </form>
+
+							</div>
+							</div>
+							</div>
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+									<thead>
+										<tr>
+											<th style="text-align: center"><? echo $L['login']; ?></th>
+											<th style="text-align: center"><? echo $L['amount']; ?></th>
+											<th style="text-align: center"><? echo $L['currency']; ?></th>
+											<th style="text-align: center"><? echo $L['date']; ?></th>
+											<th style="text-align: center">IP</th>
+											<th style="text-align: center"><? echo $L['note']; ?></th>
+										</tr>
+									</thead>
+					<?php
+					foreach($exchanges AS $row)
+					{
+					?>
+										<tr>
+											<td style="text-align: center"><?=$row['username']?></td>
+									        <td style="text-align: center" class="<?=$row['value']>0 ? 'f_red' : 'f_blue'?>"><?=$row['value']?> <?=$row[unit]?>
+											<td style="text-align: center"><?=$row[type]?></td>
+											<td style="text-align: center"><?=$row[addtime]?></td>
+											<td style="text-align: center"><?=$row['ip']?></td>
+											<td style="text-align: left"><?=$row['note']?></td>
+										</tr>
+
+			<?}?>	
+								</table>
+<? include tpl('page');?>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+	<!-- datepicker plugin -->
+	<link rel="stylesheet" href="css/datepicker.css">
+		<!-- datepicker plugin -->
+	<script src="js/bootstrap-datepicker.min.js"></script>
+<? include tpl('footer'); ?>	

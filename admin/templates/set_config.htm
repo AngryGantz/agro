@@ -1,0 +1,520 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-cogs"></i> <? echo $L['set_config']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="set_config.php"><? echo $L['set_config']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['basic_setting']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<form method="post" class='form-horizontal form-bordered form-validate' id="bb">
+							<input name="act" type="hidden" value="set_config">
+									<div class="control-group">
+										<label for="webname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['webname']; ?></label>
+										<div class="controls">
+											<input type="text" name="webname" id="webname" value="<?=$CFG[webname]?>" placeholder="<? echo $L['webname']; ?>" class="input-xlarge" data-rule-required="true" data-rule-minlength="2">
+											<br/><span class="tips"><? echo $L['webname_tip']; ?></span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="weburl" class="control-label"><span class="f_b f_red">*</span> <? echo $L['weburl']; ?></label>
+										<div class="controls">
+											<input type="text" name="weburl" id="weburl" value="<?=$CFG[weburl]?>" placeholder="<? echo $L['weburl']; ?>" class="input-xlarge" data-rule-required="true" data-rule-minlength="2">
+											<br/><span class="tips"><? echo $L['weburl_tip']; ?></span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="sysmail" class="control-label"><span class="f_b f_red">*</span> <? echo $L['sysmail']; ?></label>
+										<div class="controls">
+											<input type="text" name="sysmail" id="sysmail" value="<?=$CFG[sysmail]?>" placeholder="E-mail" class="input-xlarge" data-rule-email="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['sysmail_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="noreplymail" class="control-label"><span class="f_b f_red">*</span> <? echo $L['noreplymail']; ?></label>
+										<div class="controls">
+											<input type="text" name="noreplymail" id="noreplymail" value="<?=$CFG[noreplymail]?>" placeholder="E-mail" class="input-xlarge" data-rule-email="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['noreplymail_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="mailspam" class="control-label"><? echo $L['mailspam']; ?></label>
+										<div class="controls">
+											<input type="text" name="mailspam" id="mailspam" value="<?=$CFG[mailspam]?>" placeholder="E-mail" class="input-xxlarge">
+											<br/><span class="tips"><? echo $L['mailspam_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="currency" class="control-label"><span class="f_b f_red">*</span> <? echo $L['currency_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="currency" id="currency" value="<?=$CFG[currency]?>" class="input-small" data-rule-required="true" data-rule-minlength="1">
+											<br/><span class="tips"><? echo $L['currency_conf_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="icq" class="control-label">Skype</label>
+										<div class="controls">
+											<input type="text" name="icq" id="icq" value="<?=$CFG[icq]?>" placeholder="Skype" class="input-xxlarge">
+											<br/><span class="tips"><? echo $L['cont_conf_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="phone" class="control-label"><? echo $L['phone']; ?></label>
+										<div class="controls">
+											<input type="text" name="phone" id="phone" value="<?=$CFG[phone]?>" placeholder="<? echo $L['phone']; ?>" class="input-xlarge">
+											<br/><span class="tips"><? echo $L['cont_conf_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="tplname" class="control-label"><? echo $L['tplname']; ?></label>
+										<div class="controls">
+										  <select name="tplname" id="tplname" class='input-large'>
+										  <?
+										  foreach($tpl_dir as $val)
+										  {
+											  if($val==$CFG[tplname])
+											  {
+												  echo "<option value=$val selected='selected'>$val</option>";
+											  }else{
+												  echo "<option value=$val $select>$val</option>";
+											  }
+										  }
+										  ?>
+										  </select>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="crypt" class="control-label"><span class="f_b f_red">*</span> <? echo $L['crypt']; ?></label>
+										<div class="controls">
+											<input type="text" name="crypt" id="crypt" value="<?=$CFG[crypt]?>" placeholder="<? echo $L['crypt']; ?>" class="input-xlarge" data-rule-required="true" data-rule-minlength="5">
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['del_m_info']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="del_m_info" type="radio" value="1" <? if($CFG[del_m_info] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="del_m_info" value="0" <? if($CFG[del_m_info] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['del_m_comment']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="del_m_comment" type="radio" value="1" <? if($CFG[del_m_comment] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="del_m_comment" value="0" <? if($CFG[del_m_comment] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['post_check']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="post_check" type="radio" value="1" <? if($CFG[post_check] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="post_check" value="0" <? if($CFG[post_check] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['reg_check']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="reg_check" type="radio" value="1" <? if($CFG[reg_check] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="reg_check" value="0" <? if($CFG[reg_check] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['visitor_post']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="visitor_post" type="radio" value="1" <? if($CFG[visitor_post] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="visitor_post" value="0" <? if($CFG[visitor_post] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['comment_check']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="comment_check" type="radio" value="1" <? if($CFG[comment_check] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="comment_check" type="radio" value="0" <? if($CFG[comment_check] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['visitor_comment']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="visitor_comment" type="radio" value="1" <? if($CFG[visitor_comment] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="visitor_comment" type="radio" value="0" <? if($CFG[visitor_comment] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['expired_view']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="expired_view" type="radio" value="1" <? if($CFG[expired_view] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="expired_view" type="radio" value="0" <? if($CFG[expired_view] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['visitor_view']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="visitor_view" type="radio" value="1" <? if($CFG[visitor_view] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="visitor_view" type="radio" value="0" <? if($CFG[visitor_view] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['map_check']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="map_check" type="radio" value="1" <? if($CFG[map_check] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="map_check" type="radio" value="0" <? if($CFG[map_check] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+											<br/><span class="tips"><? echo $L['map_check_tip']; ?></span>
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label"><? echo $L['youtube_check']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="youtube_check" type="radio" value="1" <? if($CFG[youtube_check] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="youtube_check" type="radio" value="0" <? if($CFG[youtube_check] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['wap_open']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="wap" type="radio" value="1" <? if($CFG[wap] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="wap" value="0" <? if($CFG[wap] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="pagesize" class="control-label"><span class="f_b f_red">*</span> <? echo $L['pagesize_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="pagesize" id="pagesize" value="<?=$CFG[pagesize]?>" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['pagesize_conf_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="com_pagesize" class="control-label"><span class="f_b f_red">*</span> <? echo $L['com_pagesize']; ?></label>
+										<div class="controls">
+											<input type="text" name="com_pagesize" id="com_pagesize" value="<?=$CFG[com_pagesize]?>" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="com_thumbwidth" class="control-label"><span class="f_b f_red">*</span> <? echo $L['com_thumbsize']; ?></label>
+										<div class="controls">
+											<input type="text" name="com_thumbwidth" id="com_thumbwidth" value="<?=$CFG[com_thumbwidth]?>" class="input-small" data-rule-digits="true" data-rule-required="true" data-rule-minlength="2">
+											&nbsp;&#215;&nbsp;
+											<input type="text" name="com_thumbheight" id="com_thumbheight" value="<?=$CFG[com_thumbheight]?>" class="input-small" data-rule-digits="true" data-rule-required="true" data-rule-minlength="2">
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="posttimelimit" class="control-label"> <? echo $L['posttimelimit']; ?></label>
+										<div class="controls">
+											<input type="text" name="posttimelimit" id="posttimelimit" value="<?=$CFG[posttimelimit]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true"> секунд
+											<br/><span class="tips"><? echo $L['posttimelimit_tip']; ?></span>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="maxpost" class="control-label"> <? echo $L['maxpost_ip']; ?></label>
+										<div class="controls">
+											<input type="text" name="maxpost" id="maxpost" value="<?=$CFG[maxpost]?>" class="input-small" data-rule-digits="true">
+											<br/><span class="tips"><? echo $L['no_limit_0']; ?></span>
+										</div>
+									</div>
+									
+
+									<div class="control-group">
+										<label for="banwords" class="control-label"><? echo $L['banwords']; ?></label>
+										<div class="controls">
+											<textarea name="banwords" id="banwords" rows="5" class="input-block-level"><?=$CFG[banwords]?></textarea>
+											<br/><span class="tips"><? echo $L['separate_word_mark']; ?></span>
+										</div>
+									</div>
+									
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span>SEO</span>
+							</div>
+									
+									<div class="control-group">
+										<label for="annouce" class="control-label"><? echo $L['annouce']; ?></label>
+										<div class="controls">
+											<textarea name="annouce" id="annouce" rows="5" class="input-block-level"><?=$CFG[annouce]?></textarea>
+											<br/><span class="tips"><? echo $L['annouce_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="slogan" class="control-label"><? echo $L['slogan']; ?></label>
+										<div class="controls">
+											<textarea name="slogan" id="slogan" rows="5" class="input-block-level"><?=$CFG[slogan]?></textarea>
+											<br/><span class="tips"><? echo $L['slogan_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="webtitle" class="control-label"><span class="f_b f_red">*</span> <? echo $L['webtitle']; ?></label>
+										<div class="controls">
+											<input type="text" name="webtitle" id="webtitle" value="<?=$CFG[webtitle]?>" placeholder="<? echo $L['webtitle']; ?>" class="input-xxlarge" data-rule-required="true" data-rule-minlength="2">
+											<br/><span class="tips"><? echo $L['webtitle_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="keywords" class="control-label"><? echo $L['keywords']; ?></label>
+										<div class="controls">
+											<textarea name="keywords" id="keywords" rows="5" class="input-block-level"><?=$CFG[keywords]?></textarea>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="description" class="control-label"><? echo $L['descriptions']; ?></label>
+										<div class="controls">
+											<textarea name="description" id="description" rows="5" class="input-block-level"><?=$CFG[description]?></textarea>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['rewrite_conf']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="rewrite" type="radio" value="1" <? if($CFG[rewrite] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="rewrite" value="0" <? if($CFG[rewrite] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+											<br/><span class="tips"><? echo $L['rewrite_conf_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="memberanons" class="control-label"><? echo $L['memberanons']; ?></label>
+										<div class="controls">
+											<textarea name="memberanons" id="memberanons" rows="5" class="input-block-level"><?=$CFG[memberanons]?></textarea>
+											<br/><span class="tips"><? echo $L['memberanons_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['close_register']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input type="radio" name="close_register" value="1" <? if($CFG[close_register] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="close_register" type="radio" value="0" <? if($CFG[close_register] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['closesystem']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input type="radio" name="closesystem" value="1" <? if($CFG[closesystem] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input name="closesystem" type="radio" value="0" <? if($CFG[closesystem] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="close_tips" class="control-label"><? echo $L['closesystem_tip']; ?></label>
+										<div class="controls">
+											<textarea name="close_tips" id="close_tips" rows="5" class="input-block-level"><?=$CFG[close_tips]?></textarea>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="postfile" class="control-label"><span class="f_b f_red">*</span> <? echo $L['postfile_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="postfile" id="postfile" value="<?=$CFG[postfile]?>" class="input-xlarge" data-rule-required="true" data-rule-minlength="2">
+											<br/><span class="tips"><? echo $L['postfile_conf_tip']; ?></span>
+										</div>
+									</div>
+									
+<!-- 							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['promotion_services_registered']; ?></span>
+							</div>
+							
+							
+									<div class="control-group">
+										<label for="info_top_gold" class="control-label"><? echo $L['info_top_gold']; ?></label>
+										<div class="controls">
+											<input type="text" name="info_top_gold" id="info_top_gold" value="<?=$CFG[info_top_gold]?>" class="input-small" data-rule-number="true"> <?=$CFG[currency]?>
+											<br/><span class="tips"><? echo $L['cost_per_night']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="info_recomend" class="control-label"><? echo $L['info_recomend_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="info_recomend" id="info_recomend" value="<?=$CFG[info_recomend]?>" class="input-small" data-rule-number="true"> <?=$CFG[currency]?>
+											<br/><span class="tips"><? echo $L['cost_per_night']; ?></span>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="register_credit" class="control-label"><? echo $L['register_credit_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="register_credit" id="register_credit" value="<?=$CFG[register_credit]?>" class="input-small" data-rule-digits="true">
+											<br/><span class="tips"><? echo $L['min_points']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="login_credit" class="control-label"><? echo $L['login_credit_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="login_credit" id="login_credit" value="<?=$CFG[login_credit]?>" class="input-small" data-rule-digits="true">
+											<br/><span class="tips"><? echo $L['min_points']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="max_login_credit" class="control-label"><? echo $L['max_login_credit_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="max_login_credit" id="max_login_credit" value="<?=$CFG[max_login_credit]?>" class="input-small" data-rule-digits="true">
+											<br/><span class="tips"><? echo $L['min_points']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="post_info_credit" class="control-label"><? echo $L['post_info_credit_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="post_info_credit" id="post_info_credit" value="<?=$CFG[post_info_credit]?>" class="input-small" data-rule-digits="true">
+											<br/><span class="tips"><? echo $L['min_points']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="max_info_credit" class="control-label"><? echo $L['max_info_credit_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="max_info_credit" id="max_info_credit" value="<?=$CFG[max_info_credit]?>" class="input-small" data-rule-digits="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="post_comment_credit" class="control-label"><? echo $L['post_comment_credit_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="post_comment_credit" id="post_comment_credit" value="<?=$CFG[post_comment_credit]?>" class="input-small" data-rule-digits="true">
+											<br/><span class="tips"><? echo $L['min_points']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="max_comment_credit" class="control-label"><? echo $L['max_comment_credit_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="max_comment_credit" id="max_comment_credit" value="<?=$CFG[max_comment_credit]?>" class="input-small" data-rule-digits="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="creditexchange" class="control-label"><? echo $L['creditexchange_conf']; ?></label>
+										<div class="controls">
+											<input type="text" name="creditexchange" id="creditexchange" value="<?=$CFG[creditexchange]?>" class="input-small" data-rule-digits="true"> = 1 <?=$CFG[currency]?>
+											<br/><span class="tips"><? echo $L['creditexchange_conf_tip']; ?> <?=$CFG[currency]?>). <? echo $L['creditexchange_conf_tip_1']; ?></span>
+										</div>
+									</div>
+									
+ -->
+
+									<div class="form-actions">
+										<button type="submit" name="submit" id="submit" class="button button-basic-blue button-large"><? echo $L['save_changes']; ?></button>
+										<button type="reset" name="reset" id="reset" class="button button-basic button-large"><? echo $L['reset']; ?></button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				</div>
+				</div>
+
+
+<? include tpl('footer'); ?>	

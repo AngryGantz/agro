@@ -1,0 +1,43 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />     
+<meta http-equiv="cache-control" content="no-cache">  
+<title><? echo $L['message']; ?></title>
+<style type="text/css">
+.msgalert {
+font: 18px Arial, Helvetica, sans-serif;
+font-weight:bold;
+	clear:both;
+	padding:10px 7px 10px 45px ; 
+	margin-bottom:10px;
+	border:3px solid;
+	border-radius: 5px;
+	border-color:#666666; 
+	background-color:#e5e5e5; 
+	color:#262626;}
+	text-decoration: none;
+}
+
+.msgalert a:link, .msgalert a:active, .msgalert a:visited {color: #4f4f4f; text-decoration:none; }
+.msgalert a:hover {color: #262626; text-decoration:underline;}
+a:link, a:active, a:visited {color: #4f4f4f; text-decoration:none; }
+a:hover {color: #262626; text-decoration:underline;}
+hr{ border:none 0; outline:0; height:1px; clear:both;} 
+</style>
+</head>
+<body>
+<div class="msgalert" align="center">
+<?=$msg?>
+<hr/>
+<?php
+if($url=='goback' || $url=='') 
+{
+?>
+&nbsp;&#187;&nbsp;<a href="javascript:window.history.back();"><? echo $L['history_back']; ?></a>&nbsp;&#171;&nbsp;<br/>
+<? }else{?>
+&nbsp;&#187;&nbsp;<a href="<?=$url?>"><? echo $L['browser_does_not_support_redirection']; ?></a>&nbsp;&#171;&nbsp;<br/>
+<script language="javascript">setTimeout("window.location.replace('<?=$url?>')",'1250');</script>
+<?}?>
+ </div>
+</body>
+</html>

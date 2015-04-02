@@ -1,0 +1,63 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-money"></i> <? echo $L['details_payment']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="payonline.php?act=list"><? echo $L['payment']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['details_payment']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-money"></i>
+								<span><? echo $L['details_payment']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+										<tr>
+											<th style="text-align: left"><? echo $L['login']; ?></th>
+											<td style="text-align: left"><strong><?=$username?></strong></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['amount']; ?></th>
+											<td style="text-align: left"><span class="f_red f_b"><?=$amount?> <? echo $CFG['currency']; ?></span></td>
+										</tr>
+								
+										<tr>
+											<th style="text-align: left"><? echo $L['status']; ?></th>
+											<td style="text-align: left"><?=$STATUS[$status]?> <?=$note?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['create_date']; ?></th>
+											<td style="text-align: left"><?=$sendtime?></td>
+										</tr>
+											<?php if($receivetime){?>
+										<tr>
+											<th style="text-align: left"><? echo $L['payment_date']; ?></th>
+											<td style="text-align: left"><?=$receivetime?></td>
+										</tr>
+											<?php } ?>
+										
+										<tr>
+											<th style="text-align: left">IP</th>
+											<td style="text-align: left"><?=$ip?></td>
+										</tr>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

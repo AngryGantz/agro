@@ -1,0 +1,141 @@
+		<div id="navigation">
+			<ul class="mainNav" data-open-subnavs="multi">
+				<li class='<?php if($nav=='config') {?>active<?php } ?>'>
+					<a href="#"><i class="icon-cogs icon-white"></i><span><? echo $L['set_config']; ?></span><span class="label">&#8226;</span></a>
+					<ul class="subnav">
+						<li class='<?php if($navig=='config') {?>active<?php } ?>'>
+							<a href="set_config.php"><? echo $L['basic_setting']; ?></a>
+						</li>
+						<li class='<?php if($navig=='infout') {?>active<?php } ?>'>
+							<a href="infout.php"><? echo $L['displays_information']; ?></a>
+						</li>
+					</ul>
+				</li>
+
+					<li class='<?php if($nav=='member') {?>active<?php } ?>'>
+					<a href="member.php"><i class="icon-user icon-white"></i><span><? echo $L['members']; ?></span></a>
+				</li>
+				
+					<li class='<?php if($nav=='admins') {?>active<?php } ?>'>
+					<a href="admin.php"><i class="icon-user-md icon-white"></i><span><? echo $L['admins']; ?></span></a>
+				</li>
+				
+				<li class='<?php if($nav=='options') {?>active<?php } ?>'>
+					<a href="#"><i class="icon-th-large icon-white"></i><span><? echo $L['options']; ?></span><span class="label">&#8226;</span></a>
+					<ul class="subnav">
+						<li class='<?php if($navig=='comment') {?>active<?php } ?>'>
+							<a href="comment.php"><? echo $L['comment']; ?></a>
+						</li>
+						<li class='<?php if($navig=='static') {?>active<?php } ?>'>
+							<a href="static.php"><? echo $L['pages']; ?></a>
+						</li>
+						<li class='<?php if($navig=='link') {?>active<?php } ?>'>
+							<a href="link.php"><? echo $L['link']; ?></a>
+						</li>
+						<li class='<?php if($navig=='ads_place') {?>active<?php } ?>'>
+							<a href="ads_place.php"><? echo $L['ads_place']; ?></a>
+						</li>
+						<li class='<?php if($navig=='ads') {?>active<?php } ?>'>
+							<a href="ads.php"><? echo $L['advertising']; ?></a>
+						</li>
+						<li class='<?php if($navig=='slider') {?>active<?php } ?>'>
+							<a href="slider.php"><? echo $L['slider']; ?></a>
+						</li>
+						<li class='<?php if($navig=='sitemap') {?>active<?php } ?>'>
+							<a href="sitemap.php">Google sitemap</a>
+						</li>
+
+						<li class='<?php if($navig=='antispam') {?>active<?php } ?>'>
+							<a href="ver.php"><? echo $L['antispam']; ?></a>
+						</li>
+
+						<li>
+							<a href="index.php?act=clear_caches"><? echo $L['refresh_cache']; ?></a>
+						</li>
+					</ul>
+				</li>
+
+					<li class='<?php if($nav=='board') {?>active<?php } ?>'>
+					<a href="#"><i class="icon-edit icon-white"></i><span><? echo $L['board']; ?></span><span class="label">&#8226;</span></a>
+					<ul class="subnav">
+						<li class='<?php if($navig=='info') {?>active<?php } ?>'>
+							<a href="info.php"><? echo $L['list']; ?></a>
+						</li>
+						<li class='<?php if($navig=='category') {?>active<?php } ?>'>
+							<a href="category.php"><? echo $L['category']; ?></a>
+						</li>
+						<li class='<?php if($navig=='custom') {?>active<?php } ?>'>
+							<a href="custom.php"><? echo $L['custom_field']; ?></a>
+						</li>
+						<li class='<?php if($navig=='area') {?>active<?php } ?>'>
+							<a href="area.php"><? echo $L['area']; ?></a>
+						</li>
+						<li class='<?php if($navig=='report') {?>active<?php } ?>'>
+							<a href="report.php"><? echo $L['complaints']; ?></a>
+						</li>
+					</ul>
+				</li>
+					<li class='<?php if($nav=='company') {?>active<?php } ?>'>
+					<a href="#"><i class="icon-briefcase icon-white"></i><span><? echo $L['company']; ?></span><span class="label">&#8226;</span></a>
+					<ul class="subnav">
+						<li class='<?php if($navig=='com') {?>active<?php } ?>'>
+							<a href="com.php"><? echo $L['list']; ?></a>
+						</li>
+						<li class='<?php if($navig=='comcat') {?>active<?php } ?>'>
+							<a href="comcat.php"><? echo $L['category']; ?></a>
+						</li>
+					</ul>
+				</li>
+				
+					<li class='<?php if($nav=='article') {?>active<?php } ?>'>
+					<a href="#"><i class="icon-th-large icon-white"></i><span><? echo $L['articles']; ?></span><span class="label">&#8226;</span></a>
+					<ul class="subnav">
+						<li class='<?php if($navig=='article') {?>active<?php } ?>'>
+							<a href="article.php"><? echo $L['list']; ?></a>
+						</li>
+						<li class='<?php if($navig=='article_add') {?>active<?php } ?>'>
+							<a href="article.php?act=add"><? echo $L['add_article']; ?></a>
+						</li>
+						<li class='<?php if($navig=='types') {?>active<?php } ?>'>
+							<a href="type.php?module=article"><? echo $L['category']; ?></a>
+						</li>
+					</ul>
+				</li>
+				
+					<li class='<?php if($nav=='help') {?>active<?php } ?>'>
+					<a href="#"><i class="icon-question-sign icon-white"></i><span>FAQ</span><span class="label">&#8226;</span></a>
+					<ul class="subnav">
+						<li class='<?php if($navig=='help') {?>active<?php } ?>'>
+							<a href="help.php"><? echo $L['list']; ?></a>
+						</li>
+						<li class='<?php if($navig=='help_add') {?>active<?php } ?>'>
+							<a href="help.php?act=add"><? echo $L['add']; ?></a>
+						</li>
+						<li class='<?php if($navig=='types') {?>active<?php } ?>'>
+							<a href="type.php?module=help"><? echo $L['category']; ?></a>
+						</li>
+					</ul>
+				</li>
+				
+<!-- 				<li class='<?php if($nav=='payonline') {?>active<?php } ?>'>
+					<a href="#"><i class="icon-money icon-white"></i><span><? echo $L['finance']; ?></span><span class="label">&#8226;</span></a>
+					<ul class="subnav">
+						<li class='<?php if($navig=='payonline_setting') {?>active<?php } ?>'>
+							<a href="payonline.php?act=setting"><? echo $L['settings']; ?></a>
+						</li>
+						<li class='<?php if($navig=='payonline_list') {?>active<?php } ?>'>
+							<a href="payonline.php?act=list"><? echo $L['payment']; ?></a>
+						</li>
+						<li class='<?php if($navig=='pay') {?>active<?php } ?>'>
+							<a href="pay.php"><? echo $L['transactions']; ?></a>
+						</li>
+						<li class='<?php if($navig=='pay_add') {?>active<?php } ?>'>
+							<a href="pay.php?act=add"><? echo $L['pay_add']; ?></a>
+						</li>
+						<li class='<?php if($navig=='exchange') {?>active<?php } ?>'>
+							<a href="exchange.php"><? echo $L['flow_funds']; ?></a>
+						</li>
+					</ul>
+				</li> -->
+			</ul>
+		</div>

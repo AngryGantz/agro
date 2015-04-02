@@ -1,0 +1,153 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-user"></i> <? echo $L['change_data_admin']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="admin.php"><? echo $L['admins']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['change_data_admin']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['change_data_admin']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" class='form-horizontal form-bordered form-validate' action="admin.php?act=update&id=<?=$admin[userid]?>" id="bb">
+									<div class="control-group">
+										<label for="username" class="control-label"><span class="f_b f_red">*</span> <? echo $L['login']; ?></label>
+										<div class="controls">
+											<input type="text" name="username" id="username" value="<?php echo $admin[username];?>" placeholder="<?php echo $admin[username];?>" class="input-xlarge" readonly="readonly">
+											<br/><span class="tips"><? echo $L['login_admin_tip']; ?></span>
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="truename" class="control-label"><? echo $L['first_name']; ?></label>
+										<div class="controls">
+											<input type="text" name="truename" id="truename" value="<?php echo $admin[truename];?>" placeholder="<?php echo $admin[truename];?>" class="input-xlarge">
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="password" class="control-label"><? echo $L['password']; ?></label>
+										<div class="controls">
+											<input type="password" name="password" id="password" value="" placeholder="<? echo $L['password']; ?>" class="input-xlarge" autocomplete="off">
+											<br/><span class="tips"><? echo $L['password_tip']; ?></span>
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label for="repass" class="control-label"><? echo $L['password_again']; ?></label>
+										<div class="controls">
+											<input type="password" name="repass" id="repass" value="" placeholder="<? echo $L['password_again']; ?>" class="input-xlarge" autocomplete="off">
+											<br/><span class="tips"><? echo $L['password_tip']; ?></span>
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label for="email" class="control-label"><span class="f_b f_red">*</span> E-mail</label>
+										<div class="controls">
+											<input type="text" name="email" id="email" value="<?=$admin[email]?>" placeholder="<?=$admin[email]?>" class="input-xlarge" data-rule-email="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="email" class="control-label"><? echo $L['permissions']; ?></label>
+										<div class="controls">
+								  <?if($admin[is_admin]){
+								  
+								  echo "<span class=\"f_b\">".$L['primary_administrator']."</span>";
+								  }else{
+								  if($_SESSION[adminid]==$admin[userid])
+								  {
+									echo "<span class=\"f_b\">".$L['not_allowed_access']."</span>";
+								  }else{
+								  ?>
+								  
+						  <span>
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" id="purview[]" value="config" <?php if(in_array('config',$purview))echo "checked";?> >&nbsp;<? echo $L['set_config']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="infout" <?php if(in_array('infout',$purview))echo "checked";?> >&nbsp;<? echo $L['displays_information']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="slider" <?php if(in_array('slider',$purview))echo "checked";?> >&nbsp;<? echo $L['slider']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="sitemap" <?php if(in_array('sitemap',$purview))echo "checked";?> >&nbsp;Google sitemap
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="area" <?php if(in_array('area',$purview))echo "checked";?> >&nbsp;<? echo $L['area']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="category" <?php if(in_array('category',$purview))echo "checked";?> >&nbsp;<? echo $L['category']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="custom" <?php if(in_array('custom',$purview))echo "checked";?> >&nbsp;<? echo $L['custom_field']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="info" <?php if(in_array('info',$purview))echo "checked";?> >&nbsp;<? echo $L['board']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="article" <?php if(in_array('article',$purview))echo "checked";?> >&nbsp;<? echo $L['articles']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="help" <?php if(in_array('help',$purview))echo "checked";?> >&nbsp;FAQ
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="comcat" <?php if(in_array('comcat',$purview))echo "checked";?> >&nbsp;<? echo $L['company_cat']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="com" <?php if(in_array('com',$purview))echo "checked";?> >&nbsp;<? echo $L['company']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="comment" <?php if(in_array('comment',$purview))echo "checked";?> >&nbsp;<? echo $L['comment']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="report" <?php if(in_array('report',$purview))echo "checked";?> >&nbsp;<? echo $L['complaints']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="link" <?php if(in_array('link',$purview))echo "checked";?> >&nbsp;<? echo $L['link']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="static" <?php if(in_array('static',$purview))echo "checked";?> >&nbsp;<? echo $L['pages']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="ads_place" <?php if(in_array('ads_place',$purview))echo "checked";?> >&nbsp;<? echo $L['ads_place']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="ads" <?php if(in_array('ads',$purview))echo "checked";?> >&nbsp;<? echo $L['advertising']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input name="purview[]" type="checkbox" id="purview[]" value="member" <?php if(in_array('member',$purview))echo "checked";?> >&nbsp;<? echo $L['members']; ?>
+                          </label>	
+						</span>
+						<?
+						}
+						}
+						?>
+										</div>
+									</div>
+									
+									<div class="form-actions">
+										<button type="submit" name="submit" class="button button-basic-blue button-large"><? echo $L['edit']; ?></button>
+										<button type="reset" name="reset" id="reset" class="button button-basic button-large"><? echo $L['reset']; ?></button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+<? include tpl('footer'); ?>

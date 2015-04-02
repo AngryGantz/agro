@@ -1,0 +1,77 @@
+                <!-- Sidebar  -->
+                <div class="sidebar grid-25 cream-gradient transition-all" id="sidebar-mobile">
+                    <!-- Sidebar submenu box -->
+                    <div class="sidebar-box sidebar-top cream-gradient">
+                        <nav class="submenu">
+                            <ul class="expandable-menu">
+                                <li class="align-right back">
+                                    <a href="#sidebar-mobile" class="dark-color active-hover click-slide"><i class="icon-chevron-right"></i></a>
+                                </li>
+								{if !$_userid}
+                                <li>
+                                    <a href="member.php?act=register" class="dark-color active-hover">{$L['f_registration']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=login&refer={$PHP_URL}" class="dark-color active-hover">{$L['f_login_to']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=get_password" class="dark-color active-hover">{$L['f_forgot_password']}</a>
+                                </li>
+								{/if}
+								{if $_userid}
+                                <li>
+                                    <a href="member.php" class="dark-color active-hover {if $act=='index'}selected{/if}">{$L['f_control_panel']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=modify" class="dark-color active-hover {if $act=='modify'}selected{/if}">{$L['change_data']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=edit_password" class="dark-color active-hover {if $act=='edit_password'}selected{/if}">{$L['change_password']}</a>
+                                </li>
+<!--                                 <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=pay" class="dark-color active-hover {if $act=='pay'}selected{/if}">{$L['fill_up_balance']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=inout" class="dark-color active-hover {if $act=='inout'}selected{/if}">{$L['exchange_points']} {$CFG['currency']}</a>
+                                </li>
+								{/if}
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=table_charges" class="dark-color active-hover {if $act=='table_charges'}selected{/if}">{$L['f_table_of_charges']}</a>
+                                </li>
+								{if $_userid}
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=exchange" class="dark-color active-hover {if $act=='exchange'}selected{/if}">{$L['usage_charges']}</a>
+                                </li>
+ -->                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=info" class="dark-color active-hover {if $act=='info'}selected{/if}">{$L['f_my_listing']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=info_comment" class="dark-color active-hover {if $act=='info_comment'}selected{/if}">{$L['my_comments']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=com" class="dark-color active-hover {if $act=='com'}selected{/if}">{$L['my_company']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="postcom.php" class="dark-color active-hover">{$L['add_company']}</a>
+                                </li>
+                                <li class="sidebar-divider"></li>
+                                <li>
+                                    <a href="member.php?act=logout" class="dark-color active-hover">{$L['f_logout']}</a>
+                                </li>
+								{/if}
+                            </ul>
+                        </nav>
+                    </div><!-- END Sidebar submenu box -->
+                </div><!-- END Sidebar  -->

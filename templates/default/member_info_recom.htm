@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/my-profile.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    <a href="member.php" class="dark-color active-hover">{$L['f_control_panel']}</a>
+                    <strong class="active-color">{$L['adding_recomend']}</strong>
+                </div>
+            </div> <!-- END Page block  -->
+
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+                <div class="sidebar-shadow push-25"></div>
+					{template member_left}
+ 
+               <!-- Content  --> 
+               <div class="content-with-sidebar grid-75">
+			       <form class="content-form margin-bottom" name="form" action="member.php?act=recom" method="post" autocomplete="off">
+                        <div class="with-shadow grid-100 light-bg margin-bottom clearfix">
+                            <div class="content-page grid-100">
+                                <h2 class="bigger-header with-border subheader-font">
+                                  {$L['listing']}: <a class="active-color active-hover" href="view.php?id={$info[id]}" target="_blank">{$info['title']}</a>
+                                </h2>
+					            {if $CFG[info_recomend]}
+                            <h2 class="dark-color subheader-font">{$L['information']}</h2>
+								<div class="grid-95 well well-box cream-bg">
+								<p><span class="dark-color">{$L['you_balance']}: <span class="f_b px18 f_red">{$user_info['money']} {$CFG['currency']}</span></span>&nbsp;&nbsp;&nbsp;&nbsp;
+								<span class="dark-color">{$L['cost_per_night']}: <span class="f_b px18 f_red">{$CFG[info_recomend]} {$CFG['currency']}</span></span></p>
+								<p>{$L['per_recom_tip']} <span class="f_b px15 f_red">{$L['recom']}</span> {$L['and_stored_blocks']} <span class="f_b px15 f_red">{$L['recom']}</span></p>
+								</div>
+                            <div class="clear margin-bottom"></div>
+                            <h2 class="dark-color subheader-font">{$L['payment']}</h2>
+                                <div class="form-input grid-95 well well-box cream-bg">
+                                    <label for="number" class="middle-color f_b">{$L['pay_for_period']}: <span class="active-color">*</span></label>
+                                  <input type="text" class="text-input dark-color light-bg" name="number" id="number" style="width:80px;" value="7"> <span class="f_b px16 f_gray currency">{$L['days_min']}</span>
+                                </div>
+								{else}
+                                <div class="form-input grid-95 well well-box cream-bg">
+                                <p><span class="f_b f_gray px16">{$L['service_disabled']}</span></p>
+                                </div>
+								{/if}
+								
+				       {if $CFG[info_recomend]}
+                        <div class="form-submit">
+                         <input type="hidden" name="id" value="{$id}" />
+                            {if $user_info['money']>0}
+							<input type="submit" id="submit" name="submit" class="button-normal active-gradient light-color dark-gradient-hover" value="{$L['payment_go']}" />
+							{else}
+							<span class="button-normal uppercase light-color middle-gradient dark-gradient-hover">{$L['balance_not_afford']}</span>
+							{/if}
+                        </div>
+						{/if}
+                    </form>
+                            <div class="clear margin-bottom"></div>
+               </div><!-- END Content  --> 
+           </div></div> <!-- END Page block  -->
+                    
+       </section>
+{template footer}

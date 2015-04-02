@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/my-profile.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                   <a href="member.php" class="dark-color active-hover">{$L['f_control_panel']}</a>
+                    <strong class="active-color">{$L['confirmation_payment']}</strong>
+                </div>
+            </div> <!-- END Page block  -->
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+                <div class="sidebar-shadow push-25"></div>
+					{template member_left}
+ 
+               <div class="content-with-sidebar grid-75">
+                        <div class="with-shadow grid-100 light-bg margin-bottom clearfix">
+                            <div class="content-page grid-100">
+                                <h2 class="bigger-header with-border subheader-font">
+                                    {$L['confirmation_payment']}
+                                </h2>
+               <!-- Content  --> 
+                   <div class="with-shadow grid-100 light-bg margin-bottom">
+                       <div class="content-page grid-100">
+			                <form action="member.php?act=send" method="post" name="payform" onSubmit="return chkpayform()">
+							<input name="paycenter" type="hidden" value="{$paycenter}">
+							<input name="amount" type="hidden" value="{$amount}">
+			<table class="explanation-table margin-bottom">
+				<tr class="middle-color">
+				<th>{$L['payment_system']}</th>
+				<td><span class="f_b f_gray">{$payonline_setting[$paycenter]["name"]}</span></td>
+			</tr>
+			
+				<tr class="middle-color">
+				<th>{$L['amount']}</th>
+				<td><span class="f_b px16 f_red">{$amount} {$CFG['currency']}</span></td>
+			</tr>
+			
+				<tr class="middle-color">
+				<th>{$L['course_to']} {$CFG['currency']}</th>
+				<td><span class="f_b f_gray">{$percent}</span></td>
+			</tr>
+			
+				<tr class="middle-color">
+				<th>{$L['total_amount']}</th>
+				<td><span class="f_b px18 f_red">{$total_amount}</span> <span class="f_b f_gray">{$payonline_setting[$paycenter]["name"]}</span></td>
+			</tr>
+			
+                {if $paycenter=='qiwi'}
+				<tr class="middle-color">
+				<th>{$L['mobile']} <span class="active-color">*</span></th>
+				<td>
+				<input type="text" class="text-input dark-color light-bg" name="to" id="to" style="width:200px" value="" maxlength="11" onKeyUp="value=value.replace(/\D+/g,'')">
+				<br/><font color="#666666" size="-2">{$L['mobile_qiwi_tip']}</font>
+				</td>
+			</tr>
+			{/if}	
+	         </table>
+	
+                        <div class="form-submit t_c">
+                           <input type="submit" name="submit" class="button-normal uppercase light-color active-gradient dark-gradient-hover" value="{$L['payment_go']}" id="submit" />
+                           <input type="button" value="{$L['f_history_back']}" class="button-normal uppercase light-color middle-gradient dark-gradient-hover" onclick="history.back(-1);"/>
+
+
+                        </div>  
+					</form>
+				<div class="topmargin5"></div>  
+				<div class="grid-100 well well-box cream-bg">
+				{$L['payconfirm_tip']}  
+				</div>
+				<div class="topmargin5"></div> 
+				</div>
+				 </div>　
+					</div>
+			</div>
+			</div>
+			</div>
+       </section>	
+{if $paycenter=='qiwi'}
+<script type="text/javascript">
+function chkpayform(){
+	if(document.payform.to.value==""){
+		alert('{$L['mobile_empty']}');
+		document.payform.to.focus();
+		return false;
+	}
+
+	if(document.payform.to.value.length>11 || document.payform.to.value.length<10){
+		alert('{$L['mobile_length_10']}');
+		document.payform.to.focus();
+		return false;
+	}
+}
+</script>
+{/if}	
+{template footer}

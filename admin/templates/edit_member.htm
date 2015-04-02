@@ -1,0 +1,138 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>	
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-user"></i> <? echo $L['changing_user_data']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="member.php"><? echo $L['members']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['changing_user_data']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['changing_user_data']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<form method="post" class='form-horizontal form-bordered' onSubmit="return chkform()" name="form" action="member.php?act=update">
+							<input type="hidden" name="id" value="<?=$userinfo[userid]?>">
+									<div class="control-group">
+										<label for="username" class="control-label"><span class="f_b f_red">*</span> <? echo $L['login']; ?></label>
+										<div class="controls">
+											<input type="text" name="username" id="username" value="<?=$userinfo[username]?>" placeholder="<?=$userinfo[username]?>" class="input-xlarge" readonly="readonly">
+											<br/><span class="tips"><? echo $L['login_admin_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="password" class="control-label"><? echo $L['password']; ?></label>
+										<div class="controls">
+											<input type="password" name="password" id="password" value="" placeholder="<? echo $L['password']; ?>" class="input-xlarge">
+											<br/><span class="tips"><? echo $L['password_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="repassword" class="control-label"><? echo $L['password_again']; ?></label>
+										<div class="controls">
+											<input type="password" name="repassword" id="repassword" value="" placeholder="<? echo $L['password_again']; ?>" class="input-xlarge">
+											<br/><span class="tips"><? echo $L['password_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="email" class="control-label"><span class="f_b f_red">*</span> E-mail</label>
+										<div class="controls">
+											<input type="text" name="email" id="email" value="<?=$userinfo[email]?>" placeholder="<?=$userinfo[email]?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label class="control-label"><? echo $L['status']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+			                                <input name="status" type="radio" id="status" value="0" <?php if($userinfo['status']==0){?>checked<?}?> /><? echo $L['moderated_go']; ?>&nbsp;
+											</label>
+											<label class='radio'>
+											<input name="status" type="radio" id="status" value="1" <?php if($userinfo['status']==1){?>checked<?}?> /><? echo $L['activate']; ?>&nbsp;
+											</label>
+											<label class='radio'>
+			                                <input name="status" type="radio" id="status" value="2" <?php if($userinfo['status']==2){?>checked<?}?> /><? echo $L['block']; ?>
+											</label>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="registertime" class="control-label"><? echo $L['date_reg']; ?></label>
+										<div class="controls">
+										<span class="badge"><?=date('Y-m-d',$userinfo['registertime'])?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="lastlogintime" class="control-label"><? echo $L['lastlogintime']; ?></label>
+										<div class="controls">
+										<span class="badge"><?=date('Y-m-d',$userinfo['lastlogintime'])?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="lastloginip" class="control-label"><? echo $L['lastloginip']; ?></label>
+										<div class="controls">
+										<span class="badge"><?=$userinfo['lastloginip']?></span>
+										</div>
+									</div>
+
+									<div class="form-actions">
+										<button type="submit" name="modifymember" class="button button-basic-blue button-large"><? echo $L['edit']; ?></button>
+										<button type="reset" name="reset" id="reset" class="button button-basic button-large"><? echo $L['reset']; ?></button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+
+<script language="javascript">
+function chkform()
+{
+	if(document.form.password.value.length != '' && (document.form.password.value.length>30 || document.form.password.value.length<5) ){
+		alert('<? echo $L['limit_passw_5_30']; ?>');
+		document.form.password.focus();
+		return false;
+	}
+	if(document.form.repassword.value != document.form.password.value){
+		alert('<? echo $L['enter_password_again']; ?>');
+		document.form.repassword.focus();
+		return false;
+	}
+	if(document.form.email.value == "")
+	{
+		alert('<? echo $L['enter_email']; ?>');
+		document.form.email.focus();
+		return false;
+	}
+	if(document.form.email.value != "")
+	{
+	  if(!document.form.email.value.match("^([a-zA-Z0-9]+[_|\-|\.]?)*@([a-zA-Z0-9]+[_|\-|\.]?)*\.[a-zA-Z]{2,3}$"))
+	  {
+	   alert('<? echo $L['invalid_email']; ?>');
+	   document.form.email.focus();
+	   return false;
+	  }
+	}
+
+}
+</script>
+<? include tpl('footer'); ?>				

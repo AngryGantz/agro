@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/my-profile.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    <a href="member.php" class="dark-color active-hover">{$L['f_control_panel']}</a>
+                    <strong class="active-color">{$L['exchange_points']} {$CFG['currency']}</strong>
+                </div>
+            </div> <!-- END Page block  -->
+
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+                <div class="sidebar-shadow push-25"></div>
+					{template member_left}
+ 
+               <!-- Content  --> 
+               <div class="content-with-sidebar grid-75">
+			       <form class="content-form margin-bottom" name="form" action="member.php" method="post" autocomplete="off">
+                        <div class="with-shadow grid-100 light-bg margin-bottom clearfix">
+                            <div class="content-page grid-100">
+                                <h2 class="bigger-header with-border subheader-font">
+                                    {$L['exchange_points']} {$CFG['currency']}
+                                </h2>
+					            {if $CFG[creditexchange]}
+                            <h2 class="dark-color subheader-font">{$L['information']}</h2>
+								<div class="grid-95 well well-box cream-bg">
+								<p>{$L['exchanged_tip']}</p>
+								<p>{$L['exchanged_tip_1']}<br/><a href="member.php?act=table_charges" class="f_b f_red">{$L['f_table_of_charges']}</a>.</p>
+								</div>
+                            <div class="clear margin-bottom"></div>
+							
+                            <ul class="grid-50 tablet-grid-50">
+                                <li class="active-color header-font">
+                                    <span class="dark-color">{$L['you_balance']}: <span class="f_b px18 f_red">{$userinfo['money']} {$CFG['currency']}</span></span>
+                                </li>
+                                <li class="middle-color">
+                                    <span class="middle-color dark-hover">{$L['exchange_rate']}: <span class="f_b px16 f_gray">{$CFG['creditexchange']}</span> {$L['min_points']} {$L['can_be_exchanged_for']} <span class="f_b px16 f_red">1 {$CFG['currency']}</span></span>
+                                </li>
+                            </ul>
+                            <ul class="grid-50 tablet-grid-50">
+                                <li class="active-color header-font">
+                                    <span class="dark-color">{$L['you_points']}: <span class="f_b px18 f_gray">{$userinfo['credit']}</span></span>
+                                </li>
+                                <li class="middle-color">
+                                    <span class="middle-color dark-hover">{$L['you_can_get']}: <span class="f_b px16 f_red">{floor($_inout)} {$CFG['currency']}</span></span>
+                                </li>
+                            </ul>
+
+                            <div class="clear margin-bottom"></div>
+                            <h2 class="dark-color subheader-font">{$L['exchange']}</h2>
+                                <div class="form-input grid-95 well well-box cream-bg">
+                                    <label for="email" class="middle-color f_b">{$L['receive']}: <span class="active-color">*</span></label>
+                                  <input type="text" class="text-input dark-color light-bg" name="c_number" id="c_number" style="width:80px;" value="" onblur="check_creditmoney()" /> <span class="f_b px16 f_gray currency">{$CFG['currency']}</span>
+								  <span id="c_credit"></span>
+                                </div>
+								{else}
+                                <div class="form-input grid-95 well well-box cream-bg">
+                                <p><span class="f_b f_gray px16">{$L['exchanged_disabled']}</span></p>
+                                </div>
+								{/if}
+								
+			  <script type="text/javascript">
+				function check_creditmoney()
+				{
+					$.post(
+						'member.php?act=check_creditmoney',
+						{number:$("#c_number").val()},
+						function (data) {
+							eval('arrstr='+data+';');
+							if(arrstr==0) {
+								document.getElementById('c_number').value='';
+								$("#c_credit").html("<span class=\"f_red\">{$L['max_can_get']}: {floor($_inout)} {$CFG['currency']}</span>");
+							} else {
+								$("#c_credit").html("");
+							}
+						}
+					)
+				}
+				</script>
+				       {if $CFG[creditexchange]}
+                        <div class="form-submit">
+						<input type="hidden" name="act" value="act_gold">
+						<input type="hidden" name="type" value="{$L['exchange_points']} {$CFG['currency']}">
+                            {if floor($_inout)>0}<button name="submit" type="submit" id="submit" class="button-normal active-gradient light-color dark-gradient-hover">{$L['exchange_go']}</button>
+							{else}
+							<span class="button-normal uppercase light-color middle-gradient dark-gradient-hover">{$L['you_can_get_not_summ']}</span>
+							{/if}
+                        </div>
+						{/if}
+                    </form>
+                            <div class="clear margin-bottom"></div>
+               </div><!-- END Content  --> 
+           </div></div> <!-- END Page block  -->
+                    
+       </section>
+	{template footer}

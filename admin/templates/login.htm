@@ -1,0 +1,62 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="<?=$charset?>">
+    <title><? echo $L['login_control_panel']; ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta names="apple-mobile-web-app-status-bar-style" content="black" />
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Bootstrap responsive -->
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<!-- Theme CSS -->
+	<!--[if !IE]> -->
+	<link rel="stylesheet" href="css/style.css">
+	<!-- <![endif]-->
+	<!--[if IE]>
+	<link rel="stylesheet" href="css/style_ie.css">
+	<![endif]-->
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Just for demonstration -->
+	<script src="js/demonstration.min.js"></script>
+	<!-- Theme scripts -->
+	<script src="js/application.min.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+
+</head>
+<body class='login-body'>
+	<div class="login-wrap">
+		<h2>AG BOARD</h2>
+		<div class="login">
+			<form name="form" action="login.php" method="post" onsubmit="return chklogin()">
+			<input type="hidden" name="act" value="act_login">
+				<div class="sep"></div>
+				<div class="email"><input type="text" name="username" id="username" placeholder="<? echo $L['login']; ?>" class='input-block-level'></div>
+				<div class="pw">
+					<input type="password" name="password" id="password" placeholder="<? echo $L['password']; ?>" class='input-block-level'>
+				</div>
+				<button type="submit" id="submit" value="" class='button button-basic-darkblue btn-block'><? echo $L['log_in']; ?></button>
+			</form>
+		</div>
+	</div>
+<script language="javascript">
+function chklogin(){
+	if(document.form.username.value==""){
+		alert('<? echo $L['enter_login']; ?>');
+		document.form.username.focus();
+		return false;
+	}
+	if(document.form.password.value==""){
+		alert('<? echo $L['enter_password']; ?>');
+		document.form.password.focus();
+		return false;
+	}
+}
+</script>
+</body>
+</html>

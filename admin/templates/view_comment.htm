@@ -1,0 +1,67 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-comment"></i> <? echo $L['view_comments']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="comment.php"><? echo $L['comment']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['view_comments']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-comment"></i>
+								<span><? echo $L['view_comments']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+										<tr>
+											<th style="text-align: left"><? echo $L['login']; ?></th>
+											<td style="text-align: left"><?=$username?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left">IP</th>
+											<td style="text-align: left"><?=$ip?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['date']; ?></th>
+											<td style="text-align: left"><?=$postdate?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['section']; ?>/ID</th>
+											<td style="text-align: left">
+											<?php if($type=='com') { ?>
+											<a href="../com.php?act=view&id=<?=$infoid?>#comments" target="_blank">[<? echo $L['company_one']; ?>] #<?=$infoid?></a>
+											<?php } elseif($val[type]=='article') { ?>
+											<a href="../article.php?act=view&id=<?=$infoid?>#comments" target="_blank">[<? echo $L['article']; ?>] #<?=$infoid?></a>
+                                            <?php } else {?>
+											<a href="../view.php?id=<?=$infoid?>#comments" target="_blank">[<? echo $L['advt']; ?>] #<?=$infoid?></a>
+											<?php } ?>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['content']; ?></th>
+											<td style="text-align: left"><textarea name="content" id="" class="input-block-level" readonly="readonly"><? echo $content;?></textarea>
+											</td>
+										</tr>
+		
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

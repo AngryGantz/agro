@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+<meta charset="{$charset}"> 
+<meta http-equiv="cache-control" content="no-cache">  
+<title>{$L['f_message']}</title>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+</head>
+    <body class="body-background2 content-font dark-color">
+                    <div class="align-center">
+                        <div class="alert alert-info margin-bottom">
+                            {$msg}
+<div class="content-holder align-center">
+<!--{if $url=='goback' || $url==''}-->
+<a class="button-normal button-block dark-gradient light-color active-gradient-hover" href="javascript:history.back();">{$L['f_history_back']}</a>
+<!--{else}-->
+<br/><a class="button-normal button-block dark-gradient light-color active-gradient-hover" href="{$url}">{$L['f_click_here']}</a>
+<script language="javascript">setTimeout("window.location.replace('{$url}')",'1000');</script>
+<!--{/if}-->
+ </div>
+                        </div>
+                    </div>
+</body>
+</html>

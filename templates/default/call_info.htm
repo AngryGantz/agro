@@ -1,0 +1,16 @@
+<table width="100%"  border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td>
+	<table width="100%">
+	{loop $call_info $new}
+	  <tr>
+        <td align="left">
+		<a style="font-SIZE: 9pt" href="{$new['infourl']}" target="_blank">{$new['title']}</a>&nbsp;&nbsp;
+		<a href="{$new['caturl']}"><font color=#666666>{$new['catname']}</font></a>
+		</td>
+      </tr>
+	{/loop}
+    </table>
+	</td>
+  </tr>
+</table>

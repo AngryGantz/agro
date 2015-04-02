@@ -1,0 +1,146 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-list-ul"></i> <? echo $L['changing_ads']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="ads_place.php"><? echo $L['ads_place']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="ads.php"><? echo $L['advertising']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['changing_ads']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['changing_ads']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" enctype="multipart/form-data" class='form-horizontal form-bordered form-validate' action="ads.php?act=update&adsid=<?=$ads[adsid]?>&adstype=<?=$ads[adstype]?>" id="bb">
+									<div class="control-group">
+										<label for="adsname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="adsname" id="adsname" value="<?=$ads[adsname]?>" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[3, 50]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="placeid" class="control-label"><span class="f_b f_red">*</span> <? echo $L['block_ads']; ?></label>
+										<div class="controls">
+									  <select name="placeid" id="placeid" data-rule-required="true">
+										<option value=""><? echo $L['block_select']; ?></option>
+										<?
+										foreach($ads_place as $val)
+										{
+
+										  if($ads[placeid]==$val[placeid])$selected="selected";
+										  echo "<option value=$val[placeid] $selected>$val[placename]</option>";
+										  $selected = '';
+										}
+										?>
+									  </select>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="adsname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['type_ads']; ?></label>
+										<div class="controls">
+										<span class="f_b"><?echo $type[$ads[adstype]];?></span>
+										</div>
+									</div>
+                              <?if($ads[adstype]=='1' || $ads[adstype]=='2'){?>
+									<div class="control-group">
+										<label for="adsurl" class="control-label"><span class="f_b f_red">*</span> <? echo $L['resource_ads']; ?></label>
+										<div class="controls">
+											<input type="text" name="adsurl" id="adsurl" value="<?=$ads[adsurl]?>" class="input-xlarge" data-rule-required="true" data-rule-url="true">
+										</div>
+									</div>
+
+
+								<?}
+								if($ads[adstype]=='2'){
+								?>
+								
+									<div class="control-group" id="image">
+										<label for="image" class="control-label"><? echo $L['upload_image']; ?></label>
+										<div class="controls">
+											<input type="file" name="image" id="image" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group" id="imageurl">
+										<label for="imageurl" class="control-label"><? echo $L['url_to_image']; ?></label>
+										<div class="controls">
+											<input type="text" name="imageurl" id="imageurl" value="<?=$ads[adscode]?>" class="input-xlarge">
+											<br/><span class="tips"><? echo $L['url_to_image_tip_1']; ?></span>
+										</div>
+									</div>
+							<?
+							}
+							if($ads[adstype]=='3'){?>
+									<div class="control-group" id="flash">
+										<label for="flash" class="control-label"><? echo $L['flash_movie']; ?></label>
+										<div class="controls">
+											<input type="file" name="flash" id="flash" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group" id="flashurl">
+										<label for="flashurl" class="control-label"><? echo $L['flash_movie_url']; ?></label>
+										<div class="controls">
+											<input type="text" name="flashurl" id="flashurl" value="<?=$ads[adscode]?>" class="input-xlarge">
+											<br/><span class="tips"><? echo $L['flash_movie_url_tip']; ?></span>
+										</div>
+									</div>
+
+						<?}?>
+						<?if($ads[adstype]=='1'){?>
+									<div class="control-group" id="adscontent">
+										<label for="adscontent" class="control-label"><? echo $L['content_ads']; ?></label>
+										<div class="controls">
+											<input type="text" name="adscontent" id="adscontent" value="<?=$ads[adscode]?>" class="input-xxlarge">
+										</div>
+									</div>
+						<?
+						}
+						if($ads[adstype]=='4'){?>
+									<div class="control-group" id="adscode">
+										<label for="adscode" class="control-label"><? echo $L['code_ads']; ?></label>
+										<div class="controls">
+										<textarea name="adscode" id="adscode" rows="5" class="input-block-level"><?=$ads[adscode]?></textarea>
+										</div>
+									</div>
+						
+                         <?}?>
+
+									<div class="form-actions">
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['edit']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+<script language="javascript">
+function chkform(){
+
+	if(document.form.placeid.value=="0"){
+		alert('<? echo $L['block_select']; ?>');
+		document.form.placeid.focus();
+		return false;
+	}
+}
+</script>
+<? include tpl('footer'); ?>

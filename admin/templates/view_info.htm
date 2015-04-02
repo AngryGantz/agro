@@ -1,0 +1,130 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-th"></i> <? echo $L['view_listing']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="info.php"><? echo $L['list']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['view_listing']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-th"></i>
+								<span><? echo $L['view_listing']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+								
+										<tr>
+											<th style="text-align: left"><? echo $L['title']; ?></th>
+											<td style="text-align: left"><?=$title?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['category_one']; ?></th>
+											<td style="text-align: left"><?=$catname?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['area_title']; ?></th>
+											<td style="text-align: left"><?=$areaname?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['term_days']; ?></th>
+											<td style="text-align: left"><?=$enddate?></td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['price']; ?></th>
+											<td style="text-align: left">
+											<?php if($price) {?>
+											<?=$price?> <?=$unit?>
+											<?php } else {?>
+											<? echo $L['not_available']; ?>
+											<?php } ?>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['content']; ?></th>
+											<td style="text-align: left"><textarea name="content" id="" class="input-block-level" readonly="readonly"><? echo $content;?></textarea>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['name_surname']; ?></th>
+											<td style="text-align: left">
+											<?php if($linkman) {?>
+											<?=$linkman?>
+											<?php } else {?>
+											<? echo $L['not_available']; ?>
+											<?php } ?>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['phone']; ?></th>
+											<td style="text-align: left">
+											<?php if($phone) {?>
+											<?=$phone?>
+											<?php } else {?>
+											<? echo $L['not_available_a']; ?>
+											<?php } ?>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left">Skype</th>
+											<td style="text-align: left">
+											<?php if($icq) {?>
+											<?=$icq?>
+											<?php } else {?>
+											<? echo $L['not_available_a']; ?>
+											<?php } ?>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left">E-mail</th>
+											<td style="text-align: left">
+											<?php if($email) {?>
+											<?=$email?>
+											<?php } else {?>
+											<? echo $L['not_available_a']; ?>
+											<?php } ?>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left"><? echo $L['address']; ?></th>
+											<td style="text-align: left">
+											<?php if($address) {?>
+											<?=$address?>
+											<?php } else {?>
+											<? echo $L['not_available_a']; ?>
+											<?php } ?>
+											</td>
+										</tr>
+										
+										<tr>
+											<th style="text-align: left">IP</th>
+											<td style="text-align: left"><?=$ip?></td>
+										</tr>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

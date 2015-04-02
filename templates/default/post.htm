@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/post.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    <strong class="active-color">{$L['f_add_listing_go']}</strong>
+                </div>
+            </div> <!-- END Page block  --> 
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+
+                <!-- Content  -->
+                <div class="content-page checkout-page grid-100">
+
+                    <div class="checkout-progress progress">
+                        <div class="progress-step middle-color">
+                            <a class="step-outer">
+                                <span class="step-inner">
+                                    <span>1</span>
+                                </span>
+                              {$L['f_select_category']}
+                            </a>
+                        </div>
+                        <div class="progress-step active-color current-step">
+                            <a class="step-outer">
+                                <span class="step-inner">
+                                    <span class="light-color active-bg">2</span>
+                                </span>
+                             {$L['f_fill_content']}
+                            </a>
+                        </div>
+                        <div class="progress-step middle-color">
+                            <a class="step-outer">
+                                <span class="step-inner">
+                                    <span>3</span>
+                                </span>
+								{$L['f_my_add_listing']}
+                            </a>
+                        </div>
+                    </div>
+                    <hr />
+               <!-- Content  --> 
+               <div class="content-holder grid-100"> 
+			   <form id="goadded" class="content-form" name="post" action="{$CFG['postfile']}" method="post" enctype="multipart/form-data" onsubmit="return validate()">
+
+			                           <div class="box-table">
+
+                            <div class="align-center">
+                                <h2 class="subheader-font bigger-header margin-bottom">
+                                    {$L['your_ip']}: <strong class="active-color">{$ip}</strong>
+                                </h2>
+								 </div>
+                                <blockquote class="active-border cream-bg">
+                                    {$L['you_chosen_category']}: <strong class="button-normal light-color middle-gradient dark-gradient-hover">{$catinfo[catname]}</strong>
+									&nbsp;&nbsp;
+							   <a href="{$CFG['postfile']}" class="button-small button-with-icon light-color active-gradient dark-gradient-hover">
+								  {$L['change_category']} <span><i class="icon-hand-right"></i></span>
+							   </a>
+                                </blockquote>
+
+                            <h2 class="bigger-header with-border subheader-font">
+                                {$L['summary_information']}
+                            </h2>
+							
+                                <div class="form-input">
+                                    <label for="areaid" class="middle-color"><span class="f_b f_red px18">*</span> {$L['area']}</label>
+									<div class="grid-70">
+								<div class="custom-selectbox dark-color light-gradient active-hover">
+									<select name="areaid" id="areaid">
+										<option value="">-- {$L['select']} --</option>
+										 {$area_option}
+									</select>
+								</div>
+		                        </div>
+								<span class="tips" id="tip_span_areaid"></span>
+                                </div>								
+								
+                                <div class="form-input">
+                                    <label for="title" class="middle-color"><span class="f_b f_red px18">*</span> {$L['name']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" placeholder="{$L['f_max_80_characters']}" name="title" id="title" style="width:500px;"/>
+									<span class="tips" id="tip_span_title"></span>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="keyword" class="middle-color">{$L['keywords']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" placeholder="{$L['keywords_tip']}" name="keyword" id="keyword" style="width:400px;" />
+									<p class="middle-color">{$L['keywords_tip']}</p>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="enddate" class="middle-color">{$L['term_days']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" name="enddate" id="enddate" value="{$INF['maxday']}" style="width:80px;" onKeyUp="value=value.replace(/\D+/g,'')"/>
+									<p class="middle-color">{$L['term_days_tip']}</p>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="price" class="middle-color">{$L['price']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" name="price" id="price" value="" style="width:100px;" onKeyUp="value=value.replace(/\D+/g,'')"/>
+                                        <div class="custom-selectbox dark-color light-gradient active-hover" style="width:120px;">
+                                            <select name="unit" id="unit">
+                                                <option value="KZT">KZT</option>
+                                                <option value="RUB">RUB</option>
+                                                <option value="USD">USD</option>
+                                                <option value="EUR">EUR</option>
+                                                
+                                            </select>
+                                        </div>
+                                </div>
+								
+								
+					            {loop $custom $item}
+                                <div class="form-input">
+                                    <label for="custom" class="middle-color">{$item[cusname]}</label>
+                                    {$item[html]}
+                                </div>
+					            {/loop}
+								
+                                <div class="form-input">
+                                    <label for="content" class="middle-color"><span class="f_b f_red px18">*</span> {$L['content']}</label>
+                                   <textarea class="textarea-input dark-color light-bg" name="content" id="content" placeholder="{$L['f_fill_content']}..."></textarea>
+									<span class="tips" id="tip_span_content"></span>
+                                </div>
+								
+					            {if $CFG[youtube_check]==1}
+                                <div class="form-input">
+                                    <label for="youtube" class="middle-color">{$L['youtube']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" placeholder="{$L['youtube']}" name="youtube" id="youtube" style="width:500px;"/>
+					                <p class="middle-color">{$L['youtube_tip']}</p>
+                                </div>
+								{/if}
+					
+                                <div class="form-input">
+                                    <label for="content" class="middle-color">{$L['image']}</label>
+					<div class="grid-70 well well-box cream-bg">
+                   <div class="box grid-33 tablet-grid-33">
+					<input type="file" class="text-input dark-color light-bg" style="width:300px;" name="file1" id="file1" onchange="tstFile(this)" multiple="true">&nbsp;
+					<input type="file" class="text-input dark-color light-bg" style="width:300px;" name="file2" id="file2" onchange="tstFile(this)" multiple="true">&nbsp;
+					<input type="file" class="text-input dark-color light-bg" style="width:300px;" name="file3" id="file3" onchange="tstFile(this)" multiple="true">&nbsp;
+					</div>
+					<div class="box grid-33 tablet-grid-33 last">
+					<input type="file" class="text-input dark-color light-bg" style="width:300px;" name="file4" id="file4" onchange="tstFile(this)" multiple="true">&nbsp;
+					<input type="file" class="text-input dark-color light-bg" style="width:300px;" name="file5" id="file5" onchange="tstFile(this)" multiple="true">&nbsp;
+					<input type="file" class="text-input dark-color light-bg" style="width:300px;" name="file6" id="file6" onchange="tstFile(this)" multiple="true">
+					</div>
+									<p class="middle-color">{$L['max_size']}: {$maxupload} Kb. {$L['formats']}: JPG, JPEG, GIF, PNG</p>
+                                </div></div>
+								
+								
+                            <h2 class="bigger-header with-border subheader-font">
+                                {$L['contact_details']}
+                            </h2>
+
+
+                                <div class="form-input">
+                                    <label for="linkman" class="middle-color"><span class="f_b f_hid px18">*</span> {$L['name_surname']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="linkman" id="linkman" value="{$member[surname]}" />
+                                </div>
+								
+								
+				          <div class="grid-100 well well-box cream-bg">
+
+                                <div class="form-input">
+                                    <label for="email" class="middle-color"><span class="f_b f_hid px18">*</span> E-mail</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="email" id="email" value="{$member[email]}" placeholder="E-mail"/>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="phone" class="middle-color"><span class="f_b f_hid px18">*</span> {$L['phone']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="phone" id="phone" value="{$member[phone]}" placeholder="{$L['phone']}"/>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="icq" class="middle-color"><span class="f_b f_hid px18">*</span> Skype</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:300px;" name="icq" id="icq" value="{$member[icq]}" placeholder="Skype"/>
+                                </div>
+									<p class="middle-color"><strong>{$L['given_one_three_contacts']}</strong></p>	
+                         </div>
+						 
+
+                                <div class="topmargin5"></div>
+								
+                                <div class="form-input">
+                                    <label for="password" class="middle-color"><span class="f_b f_red px18">*</span> {$L['f_password']}</label>
+                                    <input type="password" class="text-input dark-color light-bg" style="width:300px;" name="password" id="password" placeholder="{$L['f_password']}" autocomplete="off"/>
+									<p class="middle-color">{$L['f_password_post_tip']}</p>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="address" class="middle-color">{$L['address']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:400px;" name="address" id="address" value="{$member[address]}" placeholder="{$L['address_tip']}"/>
+                                </div>
+								
+					            {if $CFG[map_check]==1}							
+                                <div class="form-input">
+                                    <label for="mappoint" class="middle-color">{$L['coordinates']}</label>
+					<script type="text/javascript" src="js/msgbox/msgbox.js"></script>
+					<link href="js/msgbox/msgbox.css" type="text/css" rel="stylesheet" />
+                    <input type="text" class="text-input dark-color light-bg" style="width:400px;" name="mappoint" id="mappoint" placeholder="{$L['coordinates']}" value="{$member[mappoint]}" readonly="readonly" autocomplete="off"/>
+					<input name="markmap" type="button" value="{$L['map']}" class="button-normal active-gradient light-color dark-gradient-hover" onclick="Yubox.win('do.php?act=small_map&mark=1&width=700&height=450&p={$CFG[map]}',700,540,'{$L['map']}',null,null,null,true);">
+					<p class="middle-color">{$L['map_check_tip']}</p>
+                        </div>
+								{/if}
+                                <div class="form-input">
+                                    <label for="answer" class="middle-color"><span class="f_b f_red px18">*</span> {$L['f_answer_question']}</label>
+                                    <input type="text" class="text-input dark-color light-bg" style="width:200px;" name="answer" id="answer" placeholder="{$L['f_enter_answer_question']}"/>
+									<input type="hidden" id="vid" name="vid" value="{$verf[vid]}" />
+									<p class="middle-color"><span class="f_b f_red">{$verf[question]}</span></p>
+                                </div>
+					
+					<div class="align-center">
+				    <button type="submit" class="button-normal active-gradient light-color dark-gradient-hover">{$L['add']}</button>
+					<input type="hidden" name="catid" value="{$catid}" />
+					<input type="hidden" name="act" value="postok" />
+                    </div> 
+
+				 {if $CFG[post_check]==1}
+				 <div class="topmargin5"></div>
+				 <div class="align-center">
+				 <div class="alert alert-info">
+				 {$L['tested_before_adding']}
+				  </div>
+				</div>
+				{/if}
+                        </div>
+
+                    </form>
+                </div><!-- END Content  -->
+
+            </div><!-- END Page block  -->
+
+        </section>
+	{template footer}
+<script type="text/javascript">jQuery.noConflict();</script>
+<script type="text/javascript" src="js/valid/validator.full.js"></script>
+<link href="js/valid/validator.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript">
+function tstFile(val){
+  var v = val.value;
+  var v = v.search(/^.*\.(?:jpg|jpeg|png|gif)\s*$/ig)
+  if(v!=0){
+     alert("{$L['image_not_be_added']}");
+     $('#Reset').click();
+  }
+
+}
+$.validator("areaid")
+.setTipSpanId("tip_span_areaid")
+.setFocusMsg("{$L['areaid_empty']}")
+.setRequired("{$L['areaid_empty']}")
+.setServerCharset("UTF-8")
+.setStrlenType("symbol");
+
+
+$.validator("title")
+.setTipSpanId("tip_span_title")
+.setFocusMsg("{$L['f_limit_5_80_characters']}")
+.setRequired("{$L['title_empty']}")
+.setServerCharset("UTF-8")
+.setStrlenType("symbol")
+.setMinLength(5, "{$L['f_min_5_characters']}")
+.setMaxLength(80, "{$L['f_max_80_characters']}");
+
+$.validator("content")
+.setTipSpanId("tip_span_content")
+.setFocusMsg("{$L['f_min_5_characters']}")
+.setRequired("{$L['content_empty']}")
+.setServerCharset("UTF-8")
+.setStrlenType("symbol")
+.setMinLength(5, "{$L['f_min_5_characters']}")
+
+$.validator("phone")
+.setTipSpanId("tip_span_phone")
+.setCallback(chklink, "{$L['given_one_three_contacts']}", '1');
+
+$.validator("icq")
+.setTipSpanId("tip_span_icq")
+.setCallback(chklink, "{$L['given_one_three_contacts']}", '1');
+
+$.validator("email")
+.setRegexp(/^\w+((-|\.)\w+)*@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/, "{$L['f_invalid_email']}", false)
+.setServerCharset("UTF-8")
+.setStrlenType("symbol")
+.setMaxLength(50, "{$L['f_max_50_characters']}")
+.setCallback(chklink, "{$L['given_one_three_contacts']}", '1');
+
+$.validator("password")
+.setTipSpanId("tip_span_password")
+.setFocusMsg("{$L['f_limit_6_12_characters']}")
+.setRequired("{$L['f_password_enter']}")
+.setServerCharset("UTF-8")
+.setStrlenType("symbol")
+.setMinLength(6, "{$L['f_min_6_characters']}")
+.setMaxLength(12, "{$L['f_max_12_characters']}")
+
+
+$.validator("answer")
+.setRequired("{$L['f_enter_answer_question']}")
+.setAjax("do.php?act=ver&vid="+$('#vid').val(), "{$L['f_answer_wrong']}");
+
+function chklink() {
+	if($('#phone').val()=='' && $('#email').val()=='' && $('#icq').val()=='') {
+		return false;
+	} else {
+		return true;
+	}
+}
+</script>

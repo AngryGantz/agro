@@ -1,0 +1,263 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-th"></i> <? echo $L['change_info']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="info.php"><? echo $L['list']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['change_info']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-th"></i>
+								<span><? echo $L['change_info']; ?> / <? echo $L['user_ip']; ?>: <strong><?=$ip?></strong></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" enctype="multipart/form-data" class='form-horizontal form-bordered form-validate' action="info.php" id="bb">
+									<div class="control-group">
+										<label for="title" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="title" id="title" value="<?=$title?>" class="input-xxlarge" data-rule-required="true" data-rule-rangelength="[3, 80]">
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="keyword" class="control-label"><? echo $L['keywords']; ?></label>
+										<div class="controls">
+											<input type="text" name="keyword" id="keyword" value="<?=$keywords?>" class="input-xxlarge">
+										<br/><span class="tips"><? echo $L['keywords_tip_com']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="catid" class="control-label"><span class="f_b f_red">*</span> <? echo $L['category_one']; ?></label>
+										<div class="controls">
+									<select name="catid" id="catid" data-rule-required="true">
+									  <option value=""><? echo $L['category_select']; ?></option>
+										<?php
+										echo $info_cat;
+										?>
+									</select>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="areaid" class="control-label"><span class="f_b f_red">*</span> <? echo $L['area_title']; ?></label>
+										<div class="controls">
+									<select name="areaid" id="areaid" data-rule-required="true">
+									  <option value=""><? echo $L['area_choose']; ?></option>
+										<?php
+										echo $info_area;
+										?>
+									</select>
+										</div>
+									</div>
+					
+						<?
+						if($custom)
+						{
+							foreach($custom as $item)
+							{
+								echo "<div class='control-group'>
+								  <label for='custom' class='control-label'>$item[cusname]</label>
+								  <div class='controls'>
+								  $item[html]
+								</div></div>";
+							}
+						}
+						?>
+						
+						
+									<div class="control-group">
+										<label for="enddate" class="control-label"><? echo $L['term_days']; ?></label>
+										<div class="controls">
+											<input type="text" name="enddate" id="enddate" value="<?=$enddate?>" class="input-small" data-rule-number="true">
+										<br/><span class="tips"><? echo $L['term_days_tip']; ?></span>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="price" class="control-label"><? echo $L['price']; ?></label>
+										<div class="controls">
+											<input type="text" name="price" id="price" value="<?=$price?>" class="input-small" data-rule-number="true">
+					                        <select name="unit" id="unit" style='width:100px;'>
+											<option value="<?=$unit?>" selected><?=$unit?></option>
+                                                <option value="KZT">KZT</option>
+                                                <option value="RUB">RUB</option>
+                                                <option value="USD">USD</option>
+                                                <option value="EUR">EUR</option>
+                                                
+                                            </select>
+
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="content" class="control-label"><span class="f_b f_red">*</span> <? echo $L['content']; ?></label>
+										<div class="controls">
+											<textarea name="content" id="" class="input-block-level" data-rule-required="true" data-rule-minlength="5"><? echo $content;?></textarea>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="youtube" class="control-label"><? echo $L['youtube']; ?></label>
+										<div class="controls">
+											<input type="text" name="youtube" id="youtube" value="<?=$youtube?>" class="input-xxlarge">
+										<br/><span class="tips"><? echo $L['youtube_tip']; ?></span>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="image" class="control-label"><? echo $L['images']; ?></label>
+										<div class="controls">
+							  <?php
+								if($images){
+								foreach($images as $image)
+								{
+								?>
+									<span style="text-align:center"><img src="../<?=$image[path]?>" width="70" height="70" border="1" style="color:#000000"><a href="info.php?act=delimg&imgid=<?=$image[imgid]?>"> <i rel="tooltip" title="<? echo $L['delete']; ?>" class="icon-remove-circle"></i></a></span>
+								<?}
+								}
+								else
+								{
+									echo '<span class="f_b">'.$L['no_images'].'</span>';
+								}
+							  ?> 
+										</div>
+									</div>
+						
+
+									<div class="control-group">
+										<label for="file" class="control-label"><? echo $L['add_images']; ?></label>
+										<div class="controls">
+										  <? for($i=1;$i<=$img_count;$i++){?><input type="file" class="input-large" name="file<?=$i?>" />
+										  <?}?>
+										</div>
+									</div>
+						
+									<div class="control-group">
+										<label for="linkman" class="control-label"><? echo $L['name_surname']; ?></label>
+										<div class="controls">
+											<input type="text" name="linkman" id="linkman" value="<?=$linkman?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="phone" class="control-label"><? echo $L['phone']; ?></label>
+										<div class="controls">
+											<input type="text" name="phone" id="phone" value="<?=$phone?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="icq" class="control-label">Skype</label>
+										<div class="controls">
+											<input type="text" name="icq" id="icq" value="<?=$icq?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="email" class="control-label">E-mail</label>
+										<div class="controls">
+											<input type="text" name="email" id="email" value="<?=$email?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="address" class="control-label"><? echo $L['address']; ?></label>
+										<div class="controls">
+											<input type="text" name="address" id="address" value="<?=$address?>" class="input-xxlarge">
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="address" class="control-label"><? echo $L['map']; ?></label>
+										<div class="controls">
+										<script type="text/javascript" src="../js/msgbox/msgbox.js"></script>
+                                        <link href="../js/msgbox/msgbox.css" type="text/css" rel="stylesheet" />
+											<input id='mappoint' name='mappoint' type="text" class="input-xxlarge" value="<?=$mappoint?>" placeholder="<? echo $L['coordinates']; ?>" readonly="readonly" autocomplete="off">
+											<input name="markmap" type="button" value="<? echo $L['map']; ?>" class='button button-basic button-large' onclick="Yubox.win('../do.php?act=small_map&mark=1&width=700&height=450&p={$mappoint}',700,540,'<? echo $L['map']; ?>',null,null,null,true);">
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="is_pro" class="control-label"><? echo $L['recommended_go']; ?></label>
+										<div class="controls">
+											<input type="text" name="is_pro" id="is_pro" class="input-medium datepick" data-date="2012-12-02" data-date-format="yyyy-mm-dd" value="<?=$is_pro?>" readonly="readonly">
+											<span class="add-on"><i class="icon-calendar"></i></span>
+										<br/><span class="tips"><? echo $L['recommended_go_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="is_top" class="control-label"><? echo $L['in_top_go']; ?></label>
+										<div class="controls">
+											<input type="text" name="is_top" id="is_top" class="input-medium datepick" data-date="2012-12-02" data-date-format="yyyy-mm-dd" value="<?=$is_top?>" readonly="readonly">
+											<span class="add-on"><i class="icon-calendar"></i></span>
+										<br/><span class="tips"><? echo $L['in_top_go_tip']; ?></span>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="address" class="control-label"><? echo $L['type_top']; ?></label>
+										<div class="controls">
+									  <select name="top_type" id="top_type">
+										  <option value="1" <?if($top_type=='1'){?> selected <?}?>><? echo $L['separate_block']; ?></option>
+										  <option value="2" <?if($top_type=='2'){?> selected <?}?>><? echo $L['higher_list']; ?></option>
+									  </select>
+										<br/><span class="tips"><? echo $L['option_not_used']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="address" class="control-label"><? echo $L['status']; ?></label>
+										<div class="controls">
+									  <select name="is_check" id="is_check" >
+										  <option value="1"><? echo $L['active']; ?></option>
+										  <option value="0"><? echo $L['moderated_go']; ?></option>
+									  </select>
+										</div>
+									</div>
+
+									<div class="form-actions">
+									<input name="refer" type="hidden" id="refer" value=<?=$refer?>>
+									<input type="hidden" name="id" value=<?=$id?>>
+									<input type="hidden" name="act" value="update">
+									<input type="hidden" name="thumb" value=<?=$thumb?>>
+									<input type="hidden" name="default_cat" value=<?=$catid?>>
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['edit']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+				
+	<!-- datepicker plugin -->
+	<link rel="stylesheet" href="css/datepicker.css">
+		<!-- datepicker plugin -->
+	<script src="js/bootstrap-datepicker.min.js"></script>
+<? include tpl('footer'); ?>	

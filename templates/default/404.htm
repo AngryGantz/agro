@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/js/fancybox/jquery.fancybox-1.3.4.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie-product/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="{$CFG[weburl]}/templates/{$CFG[tplname]}/style/pages/product-detail.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="{$CFG[weburl]}/images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="{$CFG[weburl]}/templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+       <section class="page-content">
+           
+           <!--  Page block  -->
+           <div class="page-block page-block-top light-bg grid-container">
+               <div class="breadcrumbs grid-100 middle-color">
+                  <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    <strong class="active-color">404 - {$L['page_not_found']}</strong>
+               </div>
+           </div> <!-- END Page block  -->
+            <!-- Page block content  -->
+           <div class="page-block page-block-bottom cream-bg grid-container">
+               <!-- Content  --> 
+               <div class="content-holder grid-100 grid-parent clearfix">
+                    
+             <div class="well-shadow well-box cream-bg">
+             <span class="f_b f_red px18">{$L['page_not_found']}.</span>
+			 <br/>
+             <span class="f_gray px16">{$L['page_not_found_tip']} <a href="{$CFG[weburl]}" class="dark-color active-hover">{$L['main_page']}</a></span>
+             </div>
+               </div><!-- END Content  --> 
+           </div> <!-- END Page block  -->       
+       </section>
+{template footer}

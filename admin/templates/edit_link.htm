@@ -1,0 +1,70 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-list-ul"></i> <? echo $L['change_link']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="link.php"><? echo $L['link']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['change_link']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['change_link']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" class='form-horizontal form-bordered form-validate' action="link.php?act=update" id="bb">
+									<div class="control-group">
+										<label for="webname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="webname" id="webname" value="<?=$link['webname']?>" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[3, 50]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="url" class="control-label"><span class="f_b f_red">*</span> URL</label>
+										<div class="controls">
+											<input type="text" name="url" id="url" value="<?=$link['url']?>" class="input-xxlarge" data-rule-required="true" data-rule-url="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="logo" class="control-label"><? echo $L['url_image_link']; ?></label>
+										<div class="controls">
+											<input type="text" name="logo" id="logo" value="<?=$link['logo']?>" class="input-xxlarge" data-rule-url="true">
+											<br/><span class="tips"><? echo $L['enter_will']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="linkorder" class="control-label"><? echo $L['sorting']; ?></label>
+										<div class="controls">
+											<input type="text" name="linkorder" id="linkorder" value="<?=$link['linkorder']?>" class="input-small" data-rule-number="true">
+										</div>
+									</div>
+	
+									<div class="form-actions">
+									 <input type="hidden" name="linkid" value="<?=$link['id']?>">
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['edit']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>

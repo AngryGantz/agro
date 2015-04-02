@@ -1,0 +1,79 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-bar-chart"></i> <? echo $L['admin_log']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="admin_log.php"><? echo $L['admin_log']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-bar-chart"></i>
+								<span><? echo $L['admin_log']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                             <form action="" method="post" onSubmit="return checkform(this);">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+									<thead>
+										<tr>
+											<th style="text-align: center">#</th>
+											<th style="text-align: center">ID</th>
+											<th style="text-align: center"><? echo $L['login']; ?></th>
+											<th style="text-align: center"><? echo $L['date']; ?></th>
+											<th style="text-align: center">IP</th>
+											<th style="text-align: center"><? echo $L['note']; ?></th>
+											<th style="text-align: center"><? echo $L['management']; ?></th>
+										</tr>
+									</thead>
+									<tbody>
+
+			<?php
+			foreach($log AS $row)
+			{
+			?>
+										<tr>
+											<td style="text-align: center"><input name="id[]" type="checkbox" id="id[]" value="<?=$row[logid]?>" /></td>
+											<td style="text-align: center"><?=$row[logid]?></td>
+											<td style="text-align: center"><?=$row[adminname]?></td>
+											<td style="text-align: center"><?=$row[logdate]?></td>
+											<td style="text-align: center"><?=$row[logip]?></td>
+											<td style="text-align: left"><?=$row[logtype]?></td>
+											<td style="text-align: center">
+											<div class="btn-group">
+											<a href="admin_log.php?act=batch&id=<?=$row[logid]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['delete']; ?>" onClick="if(!confirm('<? echo $L['delete_confirm']; ?>'))return false;"><i class="icon-remove-circle"></i></a>
+											</div>
+											</td>
+										</tr>
+
+            <?}?>	
+									</tbody>
+								</table>
+								<div class="bottom-table">
+									<div class="pull-left">
+									<input name="checkall" type="checkbox" id="checkall" onClick="CheckAll(this.form)"/>
+									<input type="hidden" name="act" value="batch">
+		                            &nbsp;&nbsp;<input name="submit" type="submit" id="submit" value="<? echo $L['delete']; ?>" class="button button-basic-blue" onClick="if(!confirm('<? echo $L['delete_confirm_batch_log']; ?>'))return false;">
+									&nbsp;&nbsp;<a href="admin_log.php?act=truncate" class="button button-basic-blue" rel="tooltip" title="<? echo $L['truncate_log']; ?>" onClick="if(!confirm('<? echo $L['truncate_confirm_all_log']; ?>'))return false;"><? echo $L['truncate_log']; ?></a>
+									</div>
+
+									</div>
+								</form>
+<? include tpl('page');?>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+				
+<? include tpl('footer'); ?>	

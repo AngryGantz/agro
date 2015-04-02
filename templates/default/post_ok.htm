@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/post.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    <strong class="active-color">{$L['f_add_listing_go']}</strong>
+                </div>
+            </div> <!-- END Page block  --> 
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+
+                <!-- Content  -->
+                <div class="content-page checkout-page grid-100">
+
+                    <div class="checkout-progress progress">
+                        <div class="progress-step middle-color">
+                            <a class="step-outer">
+                                <span class="step-inner">
+                                    <span>1</span>
+                                </span>
+                              {$L['f_select_category']}
+                            </a>
+                        </div>
+                        <div class="progress-step middle-color">
+                            <a class="step-outer">
+                                <span class="step-inner">
+                                    <span>2</span>
+                                </span>
+                             {$L['f_fill_content']}
+                            </a>
+                        </div>
+                        <div class="progress-step active-color current-step">
+                            <a class="step-outer">
+                                <span class="step-inner">
+                                   <span class="light-color active-bg">3</span>
+                                </span>
+								{$L['f_my_added_listing']}
+                            </a>
+                        </div>
+                    </div>
+                    <hr class="margin-bottom" />
+                    <div class="align-center">
+					  {if $CFG['post_check']}
+                        <div class="alert alert-warning margin-bottom">
+                            {$L['f_isting_has_been_added_moderation']} {if $_userid && $CFG['post_info_credit']}<br/>{$L['f_for_adding_earn_points']} <a href="member.php?act=table_charges" class="middle-color dark-hover">{$L['f_table_of_charges']}</a>{/if}
+                        </div>
+						{else}
+                        <div class="alert alert-success margin-bottom">
+                            {$L['f_isting_has_been_added']} {if $_userid && $CFG['post_info_credit']}<br/>{$L['f_for_adding_earn_points']} <a href="member.php?act=table_charges" class="middle-color dark-hover">{$L['f_table_of_charges']}</a>{/if}
+                        </div>
+						{/if}
+						
+                    </div>
+
+                    <hr />
+					
+                    <div class="content-holder align-center">
+                        <a href="{$CFG[postfile]}" class="button-normal light-color middle-gradient dark-gradient-hover">
+                            {$L['f_add_more']}
+                        </a>
+						{if !$CFG['post_check']}
+						&nbsp;&nbsp;&nbsp;
+                        <a href="{$url}" class="button-normal button-with-icon light-color active-gradient dark-gradient-hover hide-on-mobile">
+                            {$L['see_listing']}
+                        </a>
+						{/if}
+						{if $_userid}
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="member.php?act=info" class="button-normal button-with-icon light-color active-gradient dark-gradient-hover hide-on-mobile">
+                           {$L['f_my_listing']}
+                            <span><i class="icon-angle-right"></i></span>
+                        </a>
+						{/if}
+                    </div>
+                </div><!-- END Content  -->
+            </div><!-- END Page block  -->
+        </section>
+	{template footer}

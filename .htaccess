@@ -1,0 +1,35 @@
+AddDefaultCharset utf-8
+
+ErrorDocument 404 /404.php
+RewriteEngine On
+RewriteBase /
+RewriteRule ^(.*)\.(asp|aspx|asa|asax|dll|jsp|fcgi|pl)(.*)$ /404.php
+RewriteRule ^(.*)/file/(.*)\.php(.*)$ /404.php
+
+RewriteRule ^index\.html$ index\.php
+RewriteRule ^cat-([0-9]+)\.html$ category\.php\?id=$1
+RewriteRule ^cat-([0-9]+)-page-([0-9]+)\.html$ category\.php\?id=$1&page=$2
+RewriteRule ^cat-([0-9]+)-area-([0-9]+)\.html$ category\.php\?id=$1&area=$2
+RewriteRule ^cat-([0-9]+)-area-([0-9]+)-page-([0-9]+)\.html$ category\.php\?id=$1&area=$2&page=$3
+RewriteRule ^view-([0-9]+)\.html$ view\.php\?id=$1
+RewriteRule ^static-([0-9]+)\.html$ static\.php\?id=$1
+
+RewriteRule ^help\.html$ help\.php\?act=list
+RewriteRule ^help-list-([0-9]+)\.html$ help\.php\?act=list&typeid=$1
+RewriteRule ^help-list-([0-9]+)-page-([0-9]+)\.html$ help\.php\?act=list&typeid=$1&page=$2
+RewriteRule ^help-page-([0-9]+)\.html$ help\.php\?act=list&page=$1
+RewriteRule ^help-view-([0-9]+)\.html$ help\.php\?act=view&id=$1
+
+RewriteRule ^article\.html$ article\.php\?act=list
+RewriteRule ^article-list-([0-9]+)-page-([0-9]+)\.html$ article\.php\?act=list&typeid=$1&page=$2
+RewriteRule ^article-list-([0-9]+)\.html$ article\.php\?act=list&typeid=$1
+RewriteRule ^article-page-([0-9]+)\.html$ article\.php\?act=list&page=$1
+RewriteRule ^article-view-([0-9]+)\.html$ article\.php\?act=view&id=$1
+
+RewriteRule ^com\.html$ com\.php
+RewriteRule ^com-list-([0-9]+)\.html$ com\.php\?act=list&catid=$1
+RewriteRule ^com-page-([0-9]+)\.html$ com\.php\?act=list&page=$1
+RewriteRule ^com-area-([0-9]+)\.html$ com\.php\?act=list&catid=$1&area=$2
+RewriteRule ^com-area-([0-9]+)-page-([0-9]+)\.html$ com\.php\?act=list&catid=$1&area=$2&page=$3
+RewriteRule ^com-area-([0-9]+)\.html$ com\.php\?act=list&area=$1
+RewriteRule ^com-view-([0-9]+)\.html$ com\.php\?act=view&id=$1

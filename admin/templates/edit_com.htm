@@ -1,0 +1,157 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-th"></i> <? echo $L['change_com_data']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="com.php"><? echo $L['company']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['change_com_data']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-th"></i>
+								<span><? echo $L['change_com_data']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" class='form-horizontal form-bordered form-validate' action="com.php" id="bb">
+									<div class="control-group">
+										<label for="comname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="comname" id="comname" value="<?=$comname?>" class="input-xxlarge" data-rule-required="true" data-rule-rangelength="[3, 80]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="keyword" class="control-label"><? echo $L['keywords']; ?></label>
+										<div class="controls">
+											<input type="text" name="keyword" id="keyword" value="<?=$keywords?>" class="input-xxlarge">
+										<br/><span class="tips"><? echo $L['keywords_tip_com']; ?></span>
+										</div>
+									</div>
+							
+									<div class="control-group">
+										<label for="catid" class="control-label"><span class="f_b f_red">*</span> <? echo $L['category_one']; ?></label>
+										<div class="controls">
+									<select name="catid" id="catid" data-rule-required="true">
+									  <option value=""><? echo $L['category_select']; ?></option>
+										<?php
+										echo $info_cat;
+										?>
+									</select>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="areaid" class="control-label"><span class="f_b f_red">*</span> <? echo $L['area_title']; ?></label>
+										<div class="controls">
+									<select name="areaid" id="areaid" data-rule-required="true">
+									  <option value=""><? echo $L['area_choose']; ?></option>
+										<?php
+										echo $info_area;
+										?>
+									</select>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="introduce" class="control-label"><span class="f_b f_red">*</span> <? echo $L['about_com']; ?></label>
+										<div class="controls">
+											<textarea name="introduce" id="" class="input-block-level" data-rule-required="true" data-rule-minlength="5"><? echo $introduce;?></textarea>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="hours" class="control-label"><? echo $L['operation_time']; ?></label>
+										<div class="controls">
+											<input type="text" name="hours" id="hours" value="<?=$hours?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="linkman" class="control-label"><? echo $L['name_surname']; ?></label>
+										<div class="controls">
+											<input type="text" name="linkman" id="linkman" value="<?=$linkman?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="phone" class="control-label"><? echo $L['phone']; ?></label>
+										<div class="controls">
+											<input type="text" name="phone" id="phone" value="<?=$phone?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="icq" class="control-label">Skype</label>
+										<div class="controls">
+											<input type="text" name="icq" id="icq" value="<?=$icq?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="email" class="control-label">E-mail</label>
+										<div class="controls">
+											<input type="text" name="email" id="email" value="<?=$email?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="fax" class="control-label"><? echo $L['fax']; ?></label>
+										<div class="controls">
+											<input type="text" name="fax" id="fax" value="<?=$fax?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="address" class="control-label"><? echo $L['address']; ?></label>
+										<div class="controls">
+											<input type="text" name="address" id="address" value="<?=$address?>" class="input-xxlarge">
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label for="address" class="control-label"><? echo $L['map']; ?></label>
+										<div class="controls">
+										<script type="text/javascript" src="../js/msgbox/msgbox.js"></script>
+                                        <link href="../js/msgbox/msgbox.css" type="text/css" rel="stylesheet" />
+											<input id='mappoint' name='mappoint' type="text" class="input-xxlarge" value="<?=$mappoint?>" placeholder="<? echo $L['coordinates']; ?>" readonly="readonly" autocomplete="off">
+											<input name="markmap" type="button" value="<? echo $L['map']; ?>" class='button button-basic button-large' onclick="Yubox.win('../do.php?act=small_map&mark=1&width=700&height=450&p={$mappoint}',700,540,'<? echo $L['map']; ?>',null,null,null,true);">
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label for="is_check" class="control-label"><? echo $L['status']; ?></label>
+										<div class="controls">
+									  <select name="is_check" id="is_check" >
+										  <option value="1"><? echo $L['active_a']; ?></option>
+										  <option value="0"><? echo $L['moderated_go']; ?></option>
+									  </select>
+										</div>
+									</div>
+
+									<div class="form-actions">
+									<input name="refer" type="hidden" id="refer" value=<?=$refer?>>
+									<input type="hidden" name="id" value=<?=$id?>>
+									<input type="hidden" name="act" value="update">
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['edit']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

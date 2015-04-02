@@ -1,0 +1,78 @@
+ <!--    Main menu    -->
+            <nav class="main-menu grid-container" id="main-menu">
+                <div class="mobile-overlay"></div>
+                <!--   Mobile main menu    -->
+                <ul class="main-menu-mobile">
+                    <li class="middle-color light-hover">
+                        <a href="#menu-mobile" class="main-menu-item click-slide"><i class="icon-reorder"></i></a>
+                    </li>
+
+                    <li class="middle-color light-hover">
+                        <a href="index.php" class="main-menu-item"><i class="icon-home"></i></a>
+                    </li>
+
+                    <li class="main-menu-cart active-color light-hover">
+                        <a href="{$CFG[postfile]}" class="main-menu-item">
+                            {$L['f_add_listing']}
+                        </a>
+                    </li>
+                </ul><!--   END Mobile main menu    -->
+                <!--   Tablet and desktop main menu    -->
+                <ul class="main-menu-desktop dark-gradient transition-all" id="menu-mobile">
+                    <li class="middle-color light-hover home">
+                        <a href="{$CFG[weburl]}" class="main-menu-item transition-all"><i class="icon-home"></i></a>
+                    </li>
+
+                    <li class="middle-color light-hover back">
+                        <a href="#menu-mobile" class="main-menu-item click-slide"><i class="icon-chevron-left"></i></a>
+                    </li>
+
+                    <li class="light-color active-hover">
+                        <a href="#" class="main-menu-item transition-all"><i class="icon-th"></i> {$L['f_categories']}</a>
+
+                        <!--    Mega menu for main menu item    -->
+                        <ul class="mega-menu cream-bg full-width">
+                            <li class="mega-menu-active cream-gradient"></li>
+							{php $i='0';}
+                           {loop $cats_list $cat}
+						   {if $i<7}
+                            <li class="mega-menu-box">
+                                <a href="{$cat['caturl']}"><span class="mega-menu-title active-color clearfix">{$cat['catname']}</span></a>
+ 
+<!--                                 <ul class="mega-menu-list">
+								{loop $cat[children] $child}
+                                    <li>
+                                        <a href="{$child['url']}" class="dark-color active-hover">
+                                            {$child['name']}<span class="middle-color">{if $info_count[$child[id]]==0} (0){else} ({$info_count[$child[id]]}){/if}</span>
+                                        </a>
+                                    </li>
+							    {/loop}
+                                </ul>
+ -->                            </li>
+							{/if}
+							{php $i++;}
+							{/loop}	
+                             <div class="f_r"><a href="cat.php" class="button-small button-with-icon light-color active-gradient dark-gradient-hover hide-on-mobile">
+                                {$L['f_see_all']} <span><i class="icon-angle-right"></i></span>
+                            </a></div>
+                        </ul><!--   END Mega menu for main menu item    -->
+                    </li>
+
+	                    <li class="light-color active-hover">
+                        <a href="article.php" class="main-menu-item transition-all">{$L['f_articles']}</a>
+                        </li>				
+				
+                    <li class="light-color active-hover">
+                        <a href="com.php" class="main-menu-item transition-all">{$L['f_company']}</a>
+                    </li>
+					
+                    <li class="light-color active-hover">
+                        <a href="help.php" class="main-menu-item transition-all">{$L['f_help']}</a>
+                    </li>
+					{if !empty($CFG['mailspam'])}
+                    <li class="light-color active-hover">
+                        <a href="cont.php" class="main-menu-item transition-all">{$L['f_contacts']}</a>
+                    </li>
+					{/if}
+                </ul><!--   END Tablet and desktop main menu    -->
+            </nav><!--    END Main Menu    -->

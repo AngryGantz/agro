@@ -1,0 +1,237 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-cogs"></i> <? echo $L['displays_information']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="infout.php"><? echo $L['displays_information']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['displays_information_home']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<form method="post" class='form-horizontal form-bordered form-validate' id="bb">
+                            <input name="act" type="hidden" value="infout">
+									<div class="control-group">
+										<label class="control-label"><? echo $L['slider_main']; ?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input name="homeflash_check" type="radio" value="1" <? if($sub[homeflash_check] == '1') echo 'checked';?>> <? echo $L['yes']; ?>
+											</label>
+											<label class='radio'>
+											<input type="radio" name="homeflash_check" value="0" <? if($sub[homeflash_check] == '0') echo 'checked';?>> <? echo $L['no']; ?>
+											</label>
+										</div>
+									</div>
+
+									
+									<div class="control-group">
+										<label for="innew" class="control-label"><? echo $L['new_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="innew" id="innew" value="<?=$sub[innew]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="insimnew" id="insimnew" value="<?=$sub[insimnew]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="invip" class="control-label"><? echo $L['rec_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="invip" id="invip" value="<?=$sub[invip]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="insimvip" id="insimvip" value="<?=$sub[insimvip]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="intop" class="control-label"><? echo $L['top_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="intop" id="intop" value="<?=$sub[intop]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="insimtop" id="insimtop" value="<?=$sub[insimtop]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="inhot" class="control-label"><? echo $L['hit_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="inhot" id="inhot" value="<?=$sub[inhot]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="insimhot" id="insimhot" value="<?=$sub[insimhot]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="innewizo" class="control-label"><? echo $L['img_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="innewizo" id="innewizo" value="<?=$sub[innewizo]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="insimnewizo" id="insimnewizo" value="<?=$sub[insimnewizo]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['not_use']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="companyhome" class="control-label"><? echo $L['max_output_com']; ?></label>
+										<div class="controls">
+											<input type="text" name="companyhome" id="companyhome" value="<?=$sub[companyhome]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="helpshome" class="control-label"><? echo $L['max_output_help']; ?></label>
+										<div class="controls">
+											<input type="text" name="helpshome" id="helpshome" value="<?=$sub[helpshome]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['not_use']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="newsshome" class="control-label"><? echo $L['max_output_article']; ?></label>
+										<div class="controls">
+											<input type="text" name="newsshome" id="newsshome" value="<?=$sub[newsshome]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="commentshome" class="control-label"><? echo $L['max_output_comment']; ?></label>
+										<div class="controls">
+											<input type="text" name="commentshome" id="commentshome" value="<?=$sub[commentshome]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['not_use']; ?></span>
+										</div>
+									</div>
+									
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['displays_info_categories']; ?></span>
+							</div>
+							
+									<div class="control-group">
+										<label for="catw" class="control-label"><? echo $L['number_listing_per_page']; ?></label>
+										<div class="controls">
+											<input type="text" name="catw" id="catw" value="<?=$sub[catw]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="catvip" class="control-label"><? echo $L['rec_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="catvip" id="catvip" value="<?=$sub[catvip]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="catsimvip" id="catsimvip" value="<?=$sub[catsimvip]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['not_use']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="cathot" class="control-label"><? echo $L['hit_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="cathot" id="cathot" value="<?=$sub[cathot]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="catsimhot" id="catsimhot" value="<?=$sub[catsimhot]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['not_use']; ?></span>
+										</div>
+									</div>
+									
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['displays_info_search']; ?></span>
+							</div>
+
+									<div class="control-group">
+										<label for="searchw" class="control-label"><? echo $L['number_listing_per_page']; ?></label>
+										<div class="controls">
+											<input type="text" name="searchw" id="searchw" value="<?=$sub[searchw]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="searchhot" class="control-label"><? echo $L['hit_listing']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="searchhot" id="searchhot" value="<?=$sub[searchhot]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="searchsimhot" id="searchsimhot" value="<?=$sub[searchsimhot]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['other']; ?></span>
+							</div>
+							
+									<div class="control-group">
+										<label for="maxday" class="control-label"><? echo $L['day_listing_use']; ?></label>
+										<div class="controls">
+										<input type="text" name="maxday" id="maxday" value="<?=$sub[maxday]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['day_listing_use_tip']; ?></span>
+										</div>
+									</div>
+							
+									<div class="control-group">
+										<label for="recinfo" class="control-label"><? echo $L['rec_listing_view']; ?></label>
+										<div class="controls">
+											<? echo $L['max_output']; ?>: <input type="text" name="recinfo" id="recinfo" value="<?=$sub[recinfo]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											&nbsp;&nbsp;
+											<? echo $L['num_characters']; ?>: <input type="text" name="imrecinfo" id="imrecinfo" value="<?=$sub[imrecinfo]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+
+
+									<div class="control-group">
+										<label for="maxcomment" class="control-label"><? echo $L['number_comment_view']; ?></label>
+										<div class="controls">
+											<input type="text" name="maxcomment" id="maxcomment" value="<?=$sub[maxcomment]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="maxupload" class="control-label"><? echo $L['maxupload']; ?></label>
+										<div class="controls">
+											<input type="text" name="maxupload" id="maxupload" value="<?=$sub[maxupload]?>" placeholder="" class="input-small" data-rule-digits="true" data-rule-required="true">
+											<br/><span class="tips"><? echo $L['maxupload_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="posttext" class="control-label"><? echo $L['text_displayed_adding_listing']; ?></label>
+										<div class="controls">
+											<textarea name="posttext" id="posttext" rows="5" class="input-block-level"><?=$sub[posttext]?></textarea>
+											<br/><span class="tips"><? echo $L['field_not_text_not_display']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="postcomtext" class="control-label"><? echo $L['text_displayed_adding_company']; ?></label>
+										<div class="controls">
+											<textarea name="postcomtext" id="postcomtext" rows="5" class="input-block-level"><?=$sub[postcomtext]?></textarea>
+											<br/><span class="tips"><? echo $L['field_not_text_not_display']; ?></span>
+										</div>
+									</div>
+									
+									<div class="form-actions">
+										<button type="submit" name="submit" id="submit" class="button button-basic-blue button-large"><? echo $L['save_changes']; ?></button>
+										<button type="reset" name="reset" id="reset" class="button button-basic button-large"><? echo $L['reset']; ?></button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>

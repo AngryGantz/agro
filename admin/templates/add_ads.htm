@@ -1,0 +1,164 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-list-ul"></i> <? echo $L['add_ads']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="ads_place.php"><? echo $L['ads_place']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="ads.php"><? echo $L['advertising']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['add_ads']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['add_ads']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" enctype="multipart/form-data" class='form-horizontal form-bordered form-validate' action="ads.php?act=insert" id="bb">
+									<div class="control-group">
+										<label for="adsname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="adsname" id="adsname" value="" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[3, 50]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="placeid" class="control-label"><span class="f_b f_red">*</span> <? echo $L['block_ads']; ?></label>
+										<div class="controls">
+									  <select name="placeid" id="placeid" data-rule-required="true">
+										<option value=""><? echo $L['block_select']; ?></option>
+									  <?
+									  foreach($ads_place as $val)
+									  {
+										echo "<option value=$val[placeid]>$val[placename]</option>";
+									  }
+									  ?>
+									  </select>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="adstype" class="control-label"><span class="f_b f_red">*</span> <? echo $L['type_ads']; ?></label>
+										<div class="controls">
+									  <select name="adstype" id="adstype" onChange="showads(this.value)">
+										<option value="1" selected><? echo $L['text']; ?></option>
+										<option value="2"><? echo $L['image']; ?></option>
+										<option value="3">Flash</option>
+										<option value="4"><? echo $L['code']; ?></option>
+									  </select>
+											<br/><span class="tips"><? echo $L['change_will_not']; ?></span>
+										</div>
+									</div>
+									
+									
+										<div class="control-group" id="adsurl">
+										<label for="adsurl" class="control-label"><span class="f_b f_red">*</span> <? echo $L['resource_ads']; ?></label>
+										<div class="controls">
+											<input type="text" name="adsurl" id="adsurl" value="" class="input-xlarge" data-rule-required="true" data-rule-url="true">
+										</div>
+									</div>	
+
+									<div class="control-group" id="image" style="display:none">
+										<label for="image" class="control-label"><? echo $L['upload_image']; ?></label>
+										<div class="controls">
+											<input type="file" name="image" id="image" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group" id="imageurl" style="display:none">
+										<label for="imageurl" class="control-label"><? echo $L['url_to_image']; ?></label>
+										<div class="controls">
+											<input type="text" name="imageurl" id="imageurl" value="" class="input-xlarge">
+											<br/><span class="tips"><? echo $L['url_to_image_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group" id="flash" style="display:none">
+										<label for="flash" class="control-label"><? echo $L['flash_movie']; ?></label>
+										<div class="controls">
+											<input type="file" name="flash" id="flash" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group" id="flashurl" style="display:none">
+										<label for="flashurl" class="control-label"><? echo $L['flash_movie_url']; ?></label>
+										<div class="controls">
+											<input type="text" name="flashurl" id="flashurl" value="" class="input-xlarge">
+											<br/><span class="tips"><? echo $L['url_to_image_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group" id="adscontent">
+										<label for="adscontent" class="control-label"><? echo $L['content_ads']; ?></label>
+										<div class="controls">
+											<input type="text" name="adscontent" id="adscontent" value="" class="input-xxlarge">
+										</div>
+									</div>
+									
+									<div class="control-group" id="adscode" style="display:none">
+										<label for="adscode" class="control-label"><? echo $L['code_ads']; ?></label>
+										<div class="controls">
+										<textarea name="adscode" id="adscode" rows="5" class="input-block-level"></textarea>
+										</div>
+									</div>
+
+									<div class="form-actions">
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['add']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+<script language="javascript">
+function showads(val)
+{
+	if(val=='1'){
+		document.getElementById('adscode').style.display='none';
+		document.getElementById('flash').style.display='none';
+		document.getElementById('flashurl').style.display='none';
+		document.getElementById('image').style.display='none';
+		document.getElementById('imageurl').style.display='none';
+		document.getElementById('adsurl').style.display='';
+		document.getElementById('adscontent').style.display='';
+	}else if(val=='2'){
+		document.getElementById('image').style.display='';
+		document.getElementById('imageurl').style.display='';
+		document.getElementById('adscontent').style.display='none';
+		document.getElementById('flash').style.display='none';
+		document.getElementById('flashurl').style.display='none';
+		document.getElementById('adscode').style.display='none';
+	}else if(val=='3'){
+		document.getElementById('flash').style.display='';
+		document.getElementById('flashurl').style.display='';
+		document.getElementById('image').style.display='none';
+		document.getElementById('imageurl').style.display='none';
+		document.getElementById('adsurl').style.display='none';
+		document.getElementById('adscode').style.display='none';
+		document.getElementById('adscontent').style.display='none';
+	}else{
+	    document.getElementById('adscode').style.display='';
+		document.getElementById('flash').style.display='none';
+		document.getElementById('flashurl').style.display='none';
+		document.getElementById('image').style.display='none';
+		document.getElementById('imageurl').style.display='none';
+		document.getElementById('adsurl').style.display='none';
+		document.getElementById('adscontent').style.display='none';
+	}
+}
+</script>
+<? include tpl('footer'); ?>

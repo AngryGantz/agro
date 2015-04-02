@@ -1,0 +1,195 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-money"></i> <? echo $L['settings_payment_systems']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="paysystem.php"><? echo $L['settings_payment_systems']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+	
+			<div class="container-fluid" id="awcontent-area">
+				<div class="row-fluid">
+					<div class="span12">
+		<form method="post" name="myform" action="" class='form-horizontal form-bordered form-validate' id="bb">
+		<input type="hidden" name="act" value="act_setting">
+		<?php 
+		if(is_array($settings))
+		{
+			foreach($settings as $setting)
+			{
+		?>
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-money"></i>
+								<span><? echo $L['settings_payment_system']; ?> <?=$setting['name']?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+									<div class="control-group">
+										<label class="control-label"><? echo $L['status']; ?> <?=$setting['name']?></label>
+										<div class="controls">
+											<label class='radio'>
+											<input type="checkbox" name="enable[<?=$setting['id']?>]" value="1" <?php if($setting['enable']){?>checked<?php }?>>
+											<br/><span class="tips"><? echo $L['tip_payment_system']; ?></span>
+											</label>
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label for="name[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="name[<?=$setting['id']?>]" id="name[<?=$setting['id']?>]" value="<?=$setting['name']?>"  class="input-xlarge" data-rule-required="true" data-rule-minlength="3">
+										</div>
+									</div>
+									
+									<?
+										if($setting['paycenter']=='paypal'){
+									?>
+									
+									<div class="control-group">
+										<label for="email" class="control-label"><span class="f_b f_red">*</span> E-mail</label>
+										<div class="controls">
+											<input type="text" name="email[<?=$setting['id']?>]" id="email" value="<?=$setting['email']?>" class="input-xlarge" data-rule-email="true" data-rule-required="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="currency" class="control-label"><span class="f_b f_red">*</span> <? echo $L['payment_currency']; ?></label>
+										<div class="controls">
+									<select name="currency[<?=$setting['id']?>]">
+										<option value="GBP" <?php if($setting['currency']=='GBP') { echo 'selected'; } ?>>GBP</option>
+										<option value="USD" <?php if($setting['currency']=='USD') { echo 'selected'; } ?>>USD</option>
+										<option value="EUR" <?php if($setting['currency']=='EUR') { echo 'selected'; } ?>>EUR</option>
+									</select>
+										</div>
+									</div>
+
+									<?
+									}
+									?>
+									
+									<?
+										if($setting['paycenter']=='wmz' || $setting['paycenter']=='wmr'){
+									?>
+									
+									<div class="control-group">
+										<label for="partnerid[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> <? echo $L['score_purse']; ?></label>
+										<div class="controls">
+											<input type="text" name="partnerid[<?=$setting['id']?>]" id="partnerid[<?=$setting['id']?>]" value="<?=$setting['partnerid']?>" class="input-xlarge" data-rule-required="true" data-rule-minlength="3">
+											<br/><span class="tips"><? echo $L['score_purse_wm_tip']; ?></span>
+										</div>
+									</div>
+									
+									<?
+									}
+									?>
+									
+									<?
+										if($setting['paycenter']=='interkassa' || $setting['paycenter']=='qiwi'){
+									?>
+									
+									<div class="control-group">
+										<label for="partnerid[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> ID</label>
+										<div class="controls">
+											<input type="text" name="partnerid[<?=$setting['id']?>]" id="partnerid[<?=$setting['id']?>]" value="<?=$setting['partnerid']?>" class="input-xlarge" data-rule-required="true" data-rule-minlength="3">
+											<br/><span class="tips">ID кассы для Интеркассы, Идентификатор магазина для QIWI</span>
+										</div>
+									</div>
+									
+									<?
+									}
+									?>
+									
+									<?
+										if($setting['paycenter']!=='paypal'){
+									?>
+
+									<div class="control-group">
+										<label for="keycode[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> Secret key</label>
+										<div class="controls">
+											<input type="text" name="keycode[<?=$setting['id']?>]" id="keycode[<?=$setting['id']?>]" value="<?=$setting['keycode']?>" class="input-xlarge" data-rule-required="true" data-rule-minlength="5">
+											<br/><span class="tips"><? echo $L['secret_key_tip']; ?></span>
+										</div>
+									</div>
+									
+									<?
+									}
+									?>
+									
+									<div class="control-group">
+										<label for="percent[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> <? echo $L['rate_currency_site']; ?> <span class="f_b f_red"><?=$CFG['currency']?></span></label>
+										<div class="controls">
+											<input type="text" name="percent[<?=$setting['id']?>]" id="percent[<?=$setting['id']?>]" value="<?=$setting['percent']?>" class="input-small" data-rule-required="true" data-rule-minlength="1">
+										</div>
+									</div>
+									
+									<?
+										if($setting['paycenter']=='interkassa'){
+									?>
+									
+									<div class="control-group">
+										<label for="currency" class="control-label"><span class="f_b f_red">*</span> <? echo $L['payment_currency']; ?></label>
+										<div class="controls">
+									    <select name="currency[<?=$setting['id']?>]" id="currency[<?=$setting['id']?>]" >
+										<option value="USD" <?php if($setting['currency']=='USD') { echo 'selected'; } ?>>USD</option>
+										<option value="EUR" <?php if($setting['currency']=='EUR') { echo 'selected'; } ?>>EUR</option>
+										<option value="RUB" <?php if($setting['currency']=='RUB') { echo 'selected'; } ?>>RUB</option>
+										<option value="UAH" <?php if($setting['currency']=='UAH') { echo 'selected'; } ?>>UAH</option>
+									</select>
+										</div>
+									</div>
+									<?
+									}
+									?>
+									
+									<?
+										if($setting['paycenter']=='qiwi'){
+									?>
+									
+									<div class="control-group">
+										<label for="email[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> API ID</label>
+										<div class="controls">
+											<input type="text" name="email[<?=$setting['id']?>]" id="email[<?=$setting['id']?>]" value="<?=$setting['email']?>" class="input-xlarge" data-rule-required="true">
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label for="bankurl[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> Пароль API</label>
+										<div class="controls">
+											<input type="text" name="bankurl[<?=$setting['id']?>]" id="bankurl[<?=$setting['id']?>]" value="<?=$setting['bankurl']?>" class="input-xlarge" data-rule-required="true">
+										</div>
+									</div>
+									
+									<?
+									}
+									?>
+									
+									<div class="control-group">
+										<label for="payorder[<?=$setting['id']?>]" class="control-label"><span class="f_b f_red">*</span> <? echo $L['sorting']; ?></label>
+										<div class="controls">
+											<input type="text" name="payorder[<?=$setting['id']?>]" id="payorder[<?=$setting['id']?>]" value="<?=$setting['payorder']?>" class="input-small" data-rule-digits="true">
+										</div>
+									</div>
+
+							</div>
+						</div>
+							
+						<?php
+							}
+							} 
+						?>
+									<div class="form-actions">
+										<button type="submit" name="dosubmit" class="button button-basic-blue button-large"><? echo $L['save_changes']; ?></button>
+										<button type="reset" name="reset" id="reset" class="button button-basic button-large"><? echo $L['reset']; ?></button>
+									</div>
+								</form>
+					</div>
+				</div>
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

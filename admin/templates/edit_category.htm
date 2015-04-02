@@ -1,0 +1,107 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-list-ul"></i> <? echo $L['change_cat']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="category.php"><? echo $L['category']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['change_cat']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['change_cat']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" class='form-horizontal form-bordered form-validate' action="category.php" id="bb">
+									<div class="control-group">
+										<label for="catname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="catname" id="catname" value="<?=$cat[catname]?>" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[3, 50]">
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="catname" class="control-label"><? echo $L['category_one']; ?></label>
+										<div class="controls">
+									  <select name="parentid" id="parentid" >
+										<option value="0"><? echo $L['primarys']; ?></option>
+									<?php
+									foreach ($cats AS $cats)
+									{
+										if($cats['catid'] == $cat['parentid'])
+										{
+											echo "<option value='$cats[catid]' selected>$cats[catname]</option>\n";
+										}else{
+											echo "<option value='$cats[catid]'>$cats[catname]</option>\n";
+										}
+									}
+									?>
+									  </select>
+										</div>
+									</div>
+									
+									
+									<div class="control-group">
+										<label for="banwords" class="control-label"><? echo $L['keywords']; ?></label>
+										<div class="controls">
+											<textarea name="keywords" id="keywords" rows="5" class="input-block-level"><?=$cat[keywords]?></textarea>
+											<br/><span class="tips"><? echo $L['keywords_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="desc" class="control-label"><? echo $L['descriptions']; ?></label>
+										<div class="controls">
+											<textarea name="desc" id="desc" rows="5" class="input-block-level"><?=$cat[description]?></textarea>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="catorder" class="control-label"><? echo $L['sorting']; ?></label>
+										<div class="controls">
+											<input type="text" name="catorder" id="catorder" value="<?=$cat[catorder]?>" class="input-small" data-rule-number="true">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="catorder" class="control-label"><? echo $L['cattplname']; ?></label>
+										<div class="controls">
+											<?=$cattplname?>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="catorder" class="control-label"><? echo $L['viewtplname']; ?></label>
+										<div class="controls">
+											<?=$viewtplname?>
+										</div>
+									</div>
+
+									<div class="form-actions">
+									<input type="hidden" name="catid" value="<?=$catid?>">
+									<input type="hidden" name="act" value="update" />
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['edit']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>

@@ -1,0 +1,110 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-list-ul"></i> <? echo $L['adding_cus']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="custom.php"><? echo $L['custom_field']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['adding_cus']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['adding_cus']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" class='form-horizontal form-bordered form-validate' action="custom.php?act=insert" id="bb">
+									<div class="control-group">
+										<label for="cusname" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="cusname" id="cusname" value="" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[3, 50]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="catid" class="control-label"><span class="f_b f_red">*</span> <? echo $L['category_one']; ?></label>
+										<div class="controls">
+									<select name="catid" id="catid" data-rule-required="true">
+									  <option value=""><? echo $L['category_select']; ?></option>
+										<?php
+										echo $cat_list;
+										?>
+									</select>
+										</div>
+									</div>
+								
+									
+									<div class="control-group">
+										<label for="custype" class="control-label"><? echo $L['type']; ?></label>
+										<div class="controls">
+									  <select name="custype" id="custype" onChange="showtype(this.value)" >
+										<option value="0"><? echo $L['text']; ?></option>
+										<option value="1"><? echo $L['drop_down_list']; ?></option>
+										<option value="2">Checkbox</option>
+									  </select>
+										</div>
+									</div>
+									
+									<div class="control-group" id="text1" name="text1" style='display:none'>
+										<label for="value" class="control-label"><? echo $L['values']; ?></label>
+										<div class="controls">
+										<textarea name="value" id="value" rows="5" class="input-block-level"></textarea>
+										<br/><span class="tips"><? echo $L['values_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="search" class="control-label"><? echo $L['output_search']; ?></label>
+										<div class="controls">
+										<select name="search" id="search" >
+										<option value="0" selected><? echo $L['not_show']; ?></option>
+										<!--<option value="1">По названию</option>-->
+										<option value="2"><? echo $L['range']; ?></option>
+										<!--<option value="3">По содержанию</option>-->
+										<option value="4"><? echo $L['according_value']; ?></option>
+										</select>
+										<br/><span class="tips"><? echo $L['range_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="unit" class="control-label"><? echo $L['hint']; ?></label>
+										<div class="controls">
+											<input type="text" name="unit" id="unit" value="" class="input-xxlarge">
+										<br/><span class="tips"><? echo $L['hint_tip']; ?></span>
+										</div>
+									</div>
+
+									<div class="form-actions">
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['add']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				</div>
+				</div>
+<script language="javascript">
+function showtype(val)
+{
+	if(val=='0'){
+		text1.style.display='none';
+	}else {
+		text1.style.display='';
+	}
+}
+</script>
+<? include tpl('footer'); ?>	

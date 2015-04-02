@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/blog.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+       <section class="page-content">
+           <!--  Page block  -->
+           <div class="page-block page-block-top light-bg grid-container">
+               <div class="breadcrumbs grid-100 middle-color">
+                    {template here}
+               </div>
+           </div> <!-- END Page block  -->
+		   
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+                <div class="sidebar-shadow push-25"></div>
+                <!-- Sidebar  -->
+               <div class="sidebar cream-gradient grid-25 transition-all" id="sidebar-mobile">
+	                    <!-- Sidebar other box -->
+						{if $pro_articles}
+                    <div class="sidebar-box cream-gradient">
+                        <h2 class="header-font active-color">{$L['importantly']}</h2>
+                        <ul>
+						{loop $pro_articles $article}
+                            <li class="sidebar-divider"></li>
+                                <a href="{$article[url]}" class="sidebar-product dark-color active-hover">
+                                        {$article[title]}
+                                </a>
+                            <li class="sidebar-divider"></li>
+                          {/loop}
+                        </ul>
+                    </div><!-- END Sidebar other box -->		   
+			      {/if}
+                    <!-- Sidebar other box -->
+                    <div class="sidebar-box cream-gradient">
+                        <h2 class="header-font active-color">{$L['advertisement']}</h2>
+                        <ul>
+                       <div class="align-center">{ads_list('2', ads)}</div>
+                        </ul>
+                    </div><!-- END Sidebar other box -->
+               </div><!-- END Sidebar  -->
+                <!-- Content  -->
+                <div class="content-with-sidebar grid-75">
+                    <div class="with-shadow grid-100 light-bg">
+                        <div class="content-page content-holder grid-100">
+                            <!-- Blog content -->
+                            <h1 class="block-header header-font dark-color">
+                               {$title}
+                            </h1>
+                            <div class="blog-details middle-color clearfix">
+                                <span class="middle-color dark-hover uppercase" href="blog-detail.html">{$addtime}</span> |
+                                <span class="middle-color dark-hover">{$row['typename']}</span> |
+                                <a class="middle-color active-hover" href="javascript:window.print();"><i class="icon-print"></i></a>
+                            </div>
+
+                            <p>{$content}</p>
+                            <blockquote class="middle-color active-border margin-bottom">
+							<div class="left">{$L['mp_previous']}: {if $pre['title']}<a class="sidebar-product dark-color active-hover" href="{$pre['url']}"><i class="icon-double-angle-left"></i> {$pre['title']}</a>{else}{$L['unavailable']}{/if}</div>
+							<div class="right">{$L['mp_next']}: {if $next['title']}<a class="sidebar-product dark-color active-hover" href="{$next['url']}"><i class="icon-double-angle-right"></i> {$next['title']}</a>{else}{$L['unavailable']}{/if}</div>
+                            </blockquote><!-- END Blog content -->
+                            <hr />
+                        </div>
+                    </div>    
+
+
+
+					<!-- comments -->   
+                <div class="content-with-sidebar grid-100">
+                    <div class="with-shadow grid-100 light-bg">
+                        <div class="content-page content-holder grid-100">
+                            <!-- Blog comments -->
+                            <a name="comments"></a>
+							{if $CFG['visitor_comment']==1 && !$_userid || $_userid}
+							{if $CFG['comment_check']==1}
+							<div class="well well-box cream-bg">
+								<span class="f_b f_red">{$L['comments_checked_before_adding']}</span>
+							</div>
+							{/if}
+                            <h2 class="subheader-font uppercase">{$L['add_comment']}</h2>
+                            <form class="content-form margin-bottom" name="comment" action="member.php?act=comment" method="POST" onsubmit="return checkcomment();">
+                            <input type="hidden" name="id" value="{$id}">
+                            <input type="hidden" name="type" value="article">
+                                <div class="form-input">
+                                    <label for="content" class="middle-color"><span class="f_b f_red px18">*</span> {$L['content']}</label>
+                                    <textarea class="textarea-input dark-color light-bg" name="content" id="content" cols="10" rows="5"></textarea>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="checkcode" class="middle-color"><span class="f_b f_red px18">*</span> {$L['code']}</label>
+			                        <input name="checkcode"  type="text" id="checkcode" class="text-input dark-color light-bg" maxlength="5" style="width:100px;" onfocus='get_code();this.onfocus=null;' />
+								&nbsp;<span id="imgid"></span></span>
+                                </div>
+
+                                <div class="form-submit">
+                                    <button type="submit" class="button-normal button-with-icon light-color middle-gradient dark-gradient-hover">
+                                       {$L['comment_add']}
+                                        <span><i class="icon-angle-right"></i></span>
+                                    </button>
+                                </div>
+                            </form>
+								   {else}
+                                   <div class="alert alert-error">{$L['comment_add_reg']}
+								   </div>
+                                   <div class="topmargin5"></div>
+								   <p>
+				                    <a class="button-normal middle-gradient light-color dark-gradient-hover" href="member.php?act=register">{$L['f_registration']}</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a class="button-normal middle-gradient light-color dark-gradient-hover" href="member.php?act=login&refer={$PHP_URL}">{$L['f_log_in_control_panel']}</a>
+								   </p>
+								   {/if}
+                            <hr />
+							<div id="showcomment">{$L['comment_loading']}</div>
+							
+                            </div>
+                            </div>
+                            </div>
+						<!-- END comments -->   
+
+	                    </div>  				
+       </section>
+<script type="text/javascript">
+function checkcomment()
+{
+	if(document.comment.content.value==""){
+		alert('{$L['enter_content_comment']}');
+		document.comment.content.focus();
+		return false;
+	}
+	if(document.comment.checkcode.value==""){
+		alert('{$L['enter_verification_code']}');
+		document.comment.checkcode.focus();
+		return false;
+	}
+}
+</script>
+<iframe id="icomment" name="icomment" src="comment_article.php?infoid={$id}" frameborder="0" scrolling="no" width="0" height=0></iframe>
+{template footer}

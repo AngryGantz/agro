@@ -1,0 +1,93 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-comment"></i> <? echo $L['comment']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="comment.php"><? echo $L['comment']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-comment"></i>
+								<span><? echo $L['comment']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<form action="" method="post" onSubmit="return checkform(this);">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+									<thead>
+										<tr>
+											<th style="text-align: center">#</th>
+											<th style="text-align: center">ID</th>
+											<th style="text-align: center"><? echo $L['section']; ?>/ID</th>
+											<th style="text-align: center"><? echo $L['content']; ?></th>
+											<th style="text-align: center"><? echo $L['date']; ?></th>
+											<th style="text-align: center"><? echo $L['login']; ?></th>
+											<th style="text-align: center"><? echo $L['management']; ?></th>
+										</tr>
+									</thead>
+							
+			<?php
+			if($comment){
+			foreach($comment AS $val)
+			{
+			?>
+										<tr>
+											<td style="text-align: center"><input name="id[]" type="checkbox" id="id[]" value="<?=$val[id]?>" /></td>
+											<td style="text-align: center"><?=$val[id]?></td>
+											<td style="text-align: center">
+											<?php if($val[type]=='com') { ?>
+											<a href="../com.php?act=view&id=<?=$val[infoid]?>#comments" target="_blank">[<? echo $L['company_one']; ?>] #<?=$val[infoid]?></a>
+											<?php } elseif($val[type]=='article') { ?>
+											<a href="../article.php?act=view&id=<?=$val[infoid]?>#comments" target="_blank">[<? echo $L['article']; ?>] #<?=$val[infoid]?></a>
+                                            <?php } else {?>
+											<a href="../view.php?id=<?=$val[infoid]?>#comments" target="_blank">[<? echo $L['advt']; ?>] #<?=$val[infoid]?></a>
+											<?php } ?>
+											</td>
+									        <td style="text-align: left">
+											<?php if(!$val[is_check]) { ?><i rel="tooltip" title="<? echo $L['moderated']; ?>" class="icon-ban-circle"></i><?php } ?>
+											<?=$val[content]?></td>
+									        <td style="text-align: center"><?=$val[postdate]?></td>
+									        <td style="text-align: center"><?=$val[username]?></td>
+											<td style="text-align: center">
+											<div class="btn-group">
+											<a href="comment.php?act=batch&type=delete&id=<?=$val[id]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['delete']; ?>" onClick="if(!confirm('<? echo $L['delete_confirm']; ?>'))return false;"><i class="icon-remove-circle"></i></a>
+											<a href="comment.php?act=view&id=<?=$val[id]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['view']; ?>"><i class="icon-eye-open"></i></a>
+											</div>
+											</td>
+										</tr>
+			<?}
+			}
+			?>	
+								</table>
+								<div class="bottom-table">
+									<div class="pull-left">
+									<input rel="tooltip" title="<? echo $L['select_all']; ?>" name="checkall" type="checkbox" id="checkall" onClick="CheckAll(this.form)"/>
+									<select name="type" id="type" >
+									  <option value="0"><? echo $L['choice']; ?></option>
+									  <option value="is_check"><? echo $L['activate']; ?></option>
+									  <option value="no_check"><? echo $L['moderated_go']; ?></option>
+									  <option value="delete"><? echo $L['delete_choice']; ?></option>
+								    </select>
+									<input type="hidden" name="act" value="batch">
+		                            &nbsp;&nbsp;<input name="submit" type="submit" id="submit" value="<? echo $L['send']; ?>" class="button button-basic-blue" onClick="if(!confirm('<? echo $L['send_confirm_batch_info']; ?>'))return false;">
+									</div>
+
+									</div>
+								</form>
+<? include tpl('page');?>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

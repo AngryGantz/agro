@@ -1,0 +1,166 @@
+/* common */
+body, td { margin: 0px; padding: 0px; font-family: verdana; font-size: 11px; text-align: left; }
+body { background-color: #eaeaea; cursor: default; }
+html, body {margin:0;padding:0;width:100%;height:100%;}
+img {border:none;}
+
+
+/* grid table */
+.gridTable { background-color: #A9B8C2; margin-bottom: 8px; }
+.gridBorder { border: 1px solid #A9B8C2; }
+.gridHeader { padding: 8px 4px 8px 4px; background-color: #ededed; font-weight: bold; color: #333333; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridHeader a { color: #333333; }
+.gridContent .gridRow1 a { color: #005BB7; }
+.gridContent .gridRow2 a { color: #005BB7; }
+.gridTabs { padding: 8px 4px 8px 4px; background-color: #ededed; color: #333333; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridTabs a { color: #333333; font-weight: bold; }
+.gridTr1:hover td { background-color: #dddddd; }
+.gridTr2:hover td { background-color: #dddddd; }
+.gridRow1 { padding: 8px; background-color: #FDFDFD; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridRow2 { padding: 8px; background-color: #F9F9F9; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridRow3 { padding: 8px; background-color: #e1e1e1; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridOptions1 { padding: 6px; background-color: #F5F5F5; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridOptions2 { padding: 6px; background-color: #F5F5F5; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridActions1 { padding: 6px; background-color: #F5F5F5; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridActions2 { padding: 6px; background-color: #F5F5F5; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridLabels1 { padding: 8px; background-color: #F5F5F5; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridLabels2 { padding: 8px; background-color: #F5F5F5; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridValue1 { padding: 8px; background-color: #F9F9F9; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridValue2 { padding: 8px; background-color: #F9F9F9; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridFooter { margin-top: 1px; padding: 8px 6px 8px 6px; background-color: #ededed; border-color: #FFFFFF; border-style: solid; border-width: 1px 1px 0px 1px; }
+.gridFooter p { margin: 0px; padding: 8px 6px 8px 6px; }
+.gridFooter p.input { margin: 0px; padding: 4px 8px; float: right; }
+.gridFaded { color: #969696; }
+.gridTable b.title { color: #444444; margin-bottom: 4px; display: block; }
+.gridTable span.normal { font-weight: normal; }
+
+.gridFooter a.active { font-weight:bold; }
+
+
+/* input */
+.inputText     { padding: 4px; font-family: verdana; font-size: 11px; color: #000000; border-top: 1px solid #999999; border-left: 1px solid #999999; border-right: 1px solid #C0C0C0; border-bottom: 1px solid #C0C0C0; }
+.inputText:focus { background-color: #FFFFF0; border-top: 1px solid #808080; border-left: 1px solid #808080; border-right: 1px solid #a0a0a0; border-bottom: 1px solid #a0a0a0; }
+
+
+/* messages */
+.errormsg { padding: 8px 10px 5px 10px; border-radius: 10px; -moz-border-radius: 10px; text-shadow: 1px 1px 1px #dad6d6; overflow: auto; margin-bottom: 20px; clear: both; border: 3px solid #990000; background: #F5D0CD url(bg_fade_red_med.png) repeat-x top; font-weight: bold; font-size: 12px; color: #990000; }
+.errormsg a:link, .errormsg a:active, .errormsg a:visited {color: #990000; text-decoration:none; }
+.errormsg a:hover {color: #990000; text-decoration:underline;}
+
+.infomsg  { padding: 8px 10px 5px 10px; border-radius: 10px; -moz-border-radius: 10px; text-shadow: 1px 1px 1px #ffffff; overflow: auto; margin-bottom: 20px; clear: both; border: 3px solid #BF9900; background: #FEEB9C url(bg_fade_yellow_med.png) repeat-x top; font-weight: bold; font-size: 12px; color: #4f4f4f;  }
+.infomsg a:link, .infomsg a:active, .infomsg a:visited {color: #4f4f4f; text-decoration:none; }
+.infomsg a:hover {color: #000000; text-decoration:underline;}
+
+.docmsg  { padding: 8px 10px 5px 10px; border-radius: 10px; -moz-border-radius: 10px; text-shadow: 1px 1px 1px #ffffff; overflow: auto; margin-bottom: 20px; clear: both; border: 3px solid #8EA534; background: #CBDA8F url(bg_fade_green_med.png) repeat-x top; font-weight: bold; font-size: 14px; color: #4f4f4f;  }
+.docmsg a:link, .docmsg a:active, .docmsg a:visited {color: #4f4f4f; text-decoration:underline; }
+.docmsg a:hover {color: #000000; text-decoration:none;}
+
+
+.btn{
+	display: inline-block;
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+	font: bold 11px/1em HelveticaNeue, Arial, sans-serif;
+	padding: 5px 11px;
+	color: #555;
+	text-shadow: 0 1px 0 #fff;
+	
+	background: #f5f5f5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0));
+	background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
+	
+	border: 1px solid #333333;
+	border-color: #333333 #666666 #464646;
+	
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	
+	-webkit-box-shadow: 0 1px 2px #eaeaea, inset 0 1px 0 #fbfbfb;
+	-moz-box-shadow: 0 1px 2px #eaeaea, inset 0 1px 0 #fbfbfb;
+	box-shadow: 0 1px 2px #eaeaea, inset 0 1px 0 #fbfbfb;
+}
+
+.btn:hover, .btn:focus{
+	color: #555;
+	background: #efefef;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#e9e9e9));
+	background: -moz-linear-gradient(top, #f9f9f9, #e9e9e9);
+	border-color: #ccc;
+	-webkit-box-shadow: 0 2px 1px #e0e0e0, inset 0 1px 0 #fbfbfb;
+	-moz-box-shadow: 0 2px 1px #e0e0e0, inset 0 1px 0 #fbfbfb;
+	box-shadow: 0 1px 2px #e0e0e0, inset 0 1px 0 #fbfbfb;
+}
+}
+
+.btn:active{
+	position: relative;
+	top: 1px;	
+	color: #555;
+	background: #efefef;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eaeaea), to(#f4f4f4));
+	background: -moz-linear-gradient(top, #eaeaea, #f4f4f4);
+	border-color: #c6c6c6;
+	-webkit-box-shadow: 0 1px 0 #fff, inset 0 0 5px #ddd;
+	-moz-box-shadow: 0 1px 0 #fff, inset 0 0 5px #ddd;
+	box-shadow: 0 1px 0 #fff, inset 0 0 5px #ddd;
+}
+
+.f_b{font-weight:bold;}
+.f_white{color:white;}
+.f_gray{color:#666666;}
+.f_orange{color:#FF6600;}
+.f_red{color:red;}
+.f_hid{color:#2776BC;}
+.f_green{color:green;}
+.f_blue{color:blue;}
+.f_fd{font-family:Fixedsys,verdana;}
+.l_cursor {cursor: pointer;}
+
+.navi{
+	display: inline-block;
+	text-decoration: none;
+	outline: none;
+	cursor: pointer;
+	font: bold 11px/1em HelveticaNeue, Arial, sans-serif;
+	padding: 5px 11px;
+	color: #555;
+	text-shadow: 0 1px 0 #fff;
+	background: #f5f5f5;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#f0f0f0));
+	background: -moz-linear-gradient(top, #f9f9f9, #f0f0f0);
+	border: 1px solid #333333;
+	border-color: #333333 #666666 #464646;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 2px #eaeaea, inset 0 1px 0 #fbfbfb;
+	-moz-box-shadow: 0 1px 2px #eaeaea, inset 0 1px 0 #fbfbfb;
+	box-shadow: 0 1px 2px #eaeaea, inset 0 1px 0 #fbfbfb;
+}
+
+.navi:hover, .navi:focus{
+	color: #555;
+	background: #efefef;
+	background: -webkit-gradient(linear, left top, left bottom, from(#f9f9f9), to(#e9e9e9));
+	background: -moz-linear-gradient(top, #f9f9f9, #e9e9e9);
+	border-color: #ccc;
+	-webkit-box-shadow: 0 2px 1px #e0e0e0, inset 0 1px 0 #fbfbfb;
+	-moz-box-shadow: 0 2px 1px #e0e0e0, inset 0 1px 0 #fbfbfb;
+	box-shadow: 0 1px 2px #e0e0e0, inset 0 1px 0 #fbfbfb;
+}
+}
+
+.navi:active{
+	position: relative;
+	top: 1px;	
+	color: #555;
+	background: #efefef;
+	background: -webkit-gradient(linear, left top, left bottom, from(#eaeaea), to(#f4f4f4));
+	background: -moz-linear-gradient(top, #eaeaea, #f4f4f4);
+	border-color: #c6c6c6;
+	-webkit-box-shadow: 0 1px 0 #fff, inset 0 0 5px #ddd;
+	-moz-box-shadow: 0 1px 0 #fff, inset 0 0 5px #ddd;
+	box-shadow: 0 1px 0 #fff, inset 0 0 5px #ddd;
+}

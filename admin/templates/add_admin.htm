@@ -1,0 +1,137 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-user"></i> <? echo $L['add_admin']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li><a href="admin.php"><? echo $L['admins']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['add_admin']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['add_admin']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" class='form-horizontal form-bordered form-validate' action="admin.php?act=insert" autocomplete="off" id="bb">
+									<div class="control-group">
+										<label for="username" class="control-label"><span class="f_b f_red">*</span> <? echo $L['login']; ?></label>
+										<div class="controls">
+											<input type="text" name="username" id="username" value="" placeholder="<? echo $L['login']; ?>" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[3, 20]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="truename" class="control-label"><? echo $L['first_name']; ?></label>
+										<div class="controls">
+											<input type="text" name="truename" id="truename" value="" placeholder="<? echo $L['first_name']; ?>" class="input-xlarge">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="password" class="control-label"><span class="f_b f_red">*</span> <? echo $L['password']; ?></label>
+										<div class="controls">
+											<input type="password" name="password" id="password" value="" placeholder="<? echo $L['password']; ?>" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[6, 16]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="repass" class="control-label"><span class="f_b f_red">*</span> <? echo $L['password_again']; ?></label>
+										<div class="controls">
+											<input type="password" name="repass" id="repass" value="" placeholder="<? echo $L['password_again']; ?>" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[6, 16]">
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="email" class="control-label"><span class="f_b f_red">*</span> E-mail</label>
+										<div class="controls">
+											<input type="text" name="email" id="email" value="" placeholder="E-mail" class="input-xlarge" data-rule-email="true" data-rule-required="true">
+										</div>
+									</div>
+									<div class="control-group">
+										<label for="email" class="control-label"><? echo $L['permissions']; ?></label>
+										<div class="controls">
+						  <span>
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="config">&nbsp;<? echo $L['set_config']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="infout">&nbsp;<? echo $L['displays_information']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="slider">&nbsp;<? echo $L['slider']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="sitemap">&nbsp;Google sitemap
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="area">&nbsp;<? echo $L['area']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="category">&nbsp;<? echo $L['category']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="custom">&nbsp;<? echo $L['custom_field']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="info">&nbsp;<? echo $L['board']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="article">&nbsp;<? echo $L['articles']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="help">&nbsp;FAQ
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="comcat">&nbsp;<? echo $L['company_cat']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="com">&nbsp;<? echo $L['company']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="comment">&nbsp;<? echo $L['comment']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="report">&nbsp;<? echo $L['complaints']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="link">&nbsp;<? echo $L['link']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="static">&nbsp;<? echo $L['pages']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="ads_place">&nbsp;<? echo $L['ads_place']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="ads">&nbsp;<? echo $L['advertising']; ?>
+                          </label>	
+						  <label class='checkbox'>
+						  <input type="checkbox" name="purview[]" value="member">&nbsp;<? echo $L['members']; ?>
+                          </label>	
+						</span>
+										</div>
+									</div> 
+
+									<div class="form-actions">
+										<button type="submit" name="submit" class="button button-basic-blue button-large"><? echo $L['add']; ?></button>
+										<button type="reset" name="reset" id="reset" class="button button-basic button-large"><? echo $L['reset']; ?></button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+<? include tpl('footer'); ?>

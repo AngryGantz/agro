@@ -1,0 +1,87 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-th"></i> <? echo $L['articles']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="article.php"><? echo $L['articles']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-th"></i>
+								<span><? echo $L['articles']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<div class="highlight-toolbar">
+							<div class="pull-left">
+							<div class="btn-toolbar">
+							<div class="btn-group">
+							<a href="article.php?act=add" class="button button-basic button-large button-icon" rel="tooltip" title="<? echo $L['add']; ?>">
+							<? echo $L['add']; ?> <i class="icon-plus-sign"></i>
+							</a>
+							</div>
+							</div>
+							</div>
+							</div>
+							<form action="" method="post" onSubmit="return checkform(this);">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+									<thead>
+										<tr>
+											<th style="text-align: center">#</th>
+											<th style="text-align: center">ID</th>
+											<th style="text-align: center"><? echo $L['title']; ?></th>
+											<th style="text-align: center"><? echo $L['category_one']; ?></th>
+											<th style="text-align: center"><? echo $L['date']; ?></th>
+											<th style="text-align: center"><? echo $L['management']; ?></th>
+										</tr>
+									</thead>
+
+			<?php
+			foreach($data AS $row)
+			{
+			?>
+										<tr>
+											<td style="text-align: center"><input name="id[]" type="checkbox" id="id[]" value="<?=$row[id]?>" /></td>
+											<td style="text-align: center"><?=$row[id]?></td>
+											<td style="text-align: left">
+											<?php if($row[is_index]) { ?><i rel="tooltip" title="<? echo $L['is_index']; ?>" class="icon-home active-color"></i>&nbsp;<?php } ?>
+											<?php if($row[is_pro]) { ?><i rel="tooltip" title="<? echo $L['recommended']; ?>" class="icon-thumbs-up active-color"></i>&nbsp;<?php } ?>
+											<a href="../article.php?act=view&id=<?=$row[id]?>" target="_blank"><?=$row[title]?></a></td>
+									        <td style="text-align: center"><?=$row[typename]?></td>
+									        <td style="text-align: center"><?=$row[addtime]?></td>
+											<td style="text-align: center">
+											<div class="btn-group">
+											<a href="article.php?act=edit&id=<?=$row[id]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['edit']; ?>"><i class="icon-edit"></i></a>
+											<a href="article.php?act=delete&id=<?=$row[id]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['delete']; ?>" onClick="if(!confirm('<? echo $L['delete_confirm']; ?>'))return false;"><i class="icon-remove-circle"></i></a>
+											</div>
+											</td>
+										</tr>
+			<?}?>
+								</table>
+								<div class="bottom-table">
+									<div class="pull-left">
+									<input rel="tooltip" title="<? echo $L['select_all']; ?>" name="checkall" type="checkbox" id="checkall" onClick="CheckAll(this.form)"/>
+									<input type="hidden" name="act" value="batch">
+		                            &nbsp;&nbsp;<input name="submit" type="submit" id="submit" value="<? echo $L['delete']; ?>" class="button button-basic-blue" onClick="if(!confirm('<? echo $L['delete_confirm_batch_article']; ?>'))return false;">
+									</div>
+
+									</div>
+								</form>
+<? include tpl('page');?>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

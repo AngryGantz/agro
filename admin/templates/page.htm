@@ -1,0 +1,7 @@
+<div id="DataTables_Table_0_info" class="dataTables_info"><? echo $L['p_total_records']; ?>: <span class="label label-info"><?=$pager[count]?></span> <? echo $L['p_displaying_pages']; ?>: <span class="label"><?=$pager[page]?></span> <? echo $L['p_of']; ?> <span class="label"><?=$pager[page_count]?></span> <? echo $L['p_data_page']; ?>: <span class="label"><?=$pager[size]?></span></div>
+<div id="DataTables_Table_0_paginate" class="dataTables_paginate paging_full_numbers">
+<?if($pager[first]){?><a href="<?=$pager[first]?>" id="DataTables_Table_0_first" tabindex="0" class="first paginate_button"><? echo $L['p_first']; ?></a><?}?>
+<?if($pager[prev]){?><a href="<?=$pager[prev]?>" id="DataTables_Table_0_previous" tabindex="0" class="previous paginate_button"><? echo $L['p_previous']; ?></a><?}?>
+<?if($pager[next]){?><a href="<?=$pager[next]?>" id="DataTables_Table_0_next" tabindex="0" class="next paginate_button"><? echo $L['p_next']; ?></a><?}?>
+<?if($pager[last]){?><a href="<?=$pager[last]?>" id="DataTables_Table_0_last" tabindex="0" class="last paginate_button"><? echo $L['p_last']; ?></a><?}?>
+</div>

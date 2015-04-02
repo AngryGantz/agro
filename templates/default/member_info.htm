@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/my-profile.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    <a href="member.php" class="dark-color active-hover">{$L['f_control_panel']}</a>
+                    <strong class="active-color">{$L['f_my_listing']}</strong>
+                </div>
+            </div> <!-- END Page block  -->
+
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+                <div class="sidebar-shadow push-25"></div>
+					{template member_left}
+               <!-- Content  --> 
+               <div class="content-with-sidebar grid-75">			   
+				<div class="well-shadow cream-bg">
+				   <div class="well-table with-border">
+					   <div class="well-box grid-5"><strong>ID</strong></div>
+					   <div class="well-box grid-35"><strong>{$L['name']}</strong></div>
+					   <div class="well-box grid-15"><strong>{$L['date']}</strong></div>
+					   <div class="well-box grid-20 last active-color"><strong>{$L['management']}</strong></div>
+				   </div>
+				   {loop $infos $info}
+				   <div class="well-table">
+					   <div class="well-box grid-5">{$info[id]}</div>
+					   <div class="well-box grid-35">
+					   {if $info[is_pro]}<i title="{$L['published_recomend']}" class="icon-thumbs-up active-color"></i>{/if}
+                       {if $info[is_top]}<i title="{$L['published_the_top']}" class="icon-circle-arrow-up active-color"></i>{/if}
+                       {if !$info[is_check]}<i title="{$L['on_moderation']}" class="icon-ban-circle"></i>{/if}
+					   <a class="dark-color active-hover" href="{$info[url]}" target="_blank">{$info[title]}</a>
+					   </div>
+					   <div class="well-box grid-15">{$info[postdate]}</div>
+					   <div class="well-box grid-20 last active-color">
+			<a href="member.php?act=editinfo&id={$info[id]}"><i title="{$L['change']}" class="icon-edit icon-large dark-color"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="member.php?act=delinfo&id={$info[id]}" onClick="if(!confirm('{$L['confirm_delete']}'))return false;"><i title="{$L['delete']}" class="icon-minus-sign icon-large dark-color"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+<!-- 			<a href="member.php?act=recom&id={$info[id]}"><i title="{$L['place_recomend']}" class="icon-thumbs-up icon-large active-color"></i></a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="member.php?act=top&id={$info[id]}"><i title="{$L['raise_the_top']}" class="icon-circle-arrow-up icon-large active-color"></i></a>
+ -->					   </div>
+				   </div>
+				   {/loop}
+
+                  <div class="topmargin10"></div>
+      </div> 
+                  <div class="topmargin5"></div>
+<div class="grid-100 well well-box cream-bg">
+
+<!-- <p><i title="{$L['place_recomend']}" class="icon-thumbs-up icon-large active-color"></i>&nbsp;&nbsp;- {$L['ico_place_recomend']}</p>
+
+<p><i title="{$L['raise_the_top']}" class="icon-c   ircle-arrow-up icon-large active-color"></i>&nbsp;&nbsp;- {$L['ico_raise_the_top']}</p>
+
+<p><a href="member.php?act=table_charges" class="f_b f_red">{$L['f_table_of_charges']}</a>.</p>
+ -->
+
+</div>
+                  <div class="topmargin5"></div>
+{template page}
+			</div> 
+                 </div>                    
+			   <!-- END Content  -->
+       </section>
+{template footer}

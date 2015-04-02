@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="<?=$charset?>">
+	<title><? echo $L['control_panel']; ?></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta names="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<!-- Bootstrap responsive -->
+	<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+	<!-- CSS for Growl like notifications -->
+	<link rel="stylesheet" href="css/jquery.gritter.css">
+	<!-- Theme CSS -->
+	<!--[if !IE]> -->
+	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/other.css">
+	<!-- <![endif]-->
+	<!--[if IE]>
+	<link rel="stylesheet" href="css/style_ie.css">
+	<![endif]-->
+	<!-- jQuery -->
+	<script src="js/jquery.min.js"></script>
+	<!-- smoother animations -->
+	<script src="js/jquery.easing.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="js/bootstrap.min.js"></script>
+	<!-- Scrollable navigation -->
+	<script src="js/jquery.nicescroll.min.js"></script>
+	<!-- Growl Like notifications -->
+	<script src="js/jquery.gritter.min.js"></script>
+	<!-- Form plugin -->
+	<script src="js/jquery.form.min.js"></script>
+	<!-- Validation plugin -->
+	<script src="js/jquery.validate.min.js"></script>
+	<script src="js/messages_ru.js"></script>
+	<!-- Additional methods for validation plugin -->
+	<script src="js/additional-methods.min.js"></script>
+
+	<!-- Just for demonstration -->
+	<script src="js/demonstration.min.js"></script>
+	<!-- Theme framework -->
+	<script src="js/eakroko.min.js"></script>
+	<!-- Theme scripts -->
+	<script src="js/application.min.js"></script>
+	<script src="js/common.js"></script>
+	<link rel="shortcut icon" href="../favicon.ico" />
+	<link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png" />
+</head>
+<body data-layout="fixed">
+	<div id="top"> 
+		<div class="container-fluid">
+			<div class="pull-left">
+				<a href="index.php" id="brand"><span></span>AG BOARD</a>
+				<div class="collapse-me">
+					<a href="index.php?act=clear_caches" class="button">
+						<i class="icon-refresh icon-white"></i>
+						<? echo $L['refresh_cache']; ?>
+					</a>
+					<a href="http://studioweb.pro/" target="_blank" class="button">
+						<i class="icon-circle icon-white"></i>
+						<? echo $L['developer']; ?>
+					</a>
+					<a href="../index.php" target="_blank" class="button">
+						<i class="icon-external-link icon-white"></i>
+						<? echo $L['see_website']; ?>
+					</a>
+				</div>
+			</div>
+			<div class="pull-right">
+				<div class="btn-group">
+					<a href="#" class="button dropdown-toggle" data-toggle="dropdown"><i class="icon-white icon-user"></i><? echo $L['welcome']; ?> <?=$_SESSION['adminname']?><span class="caret"></span></a>
+					<div class="dropdown-menu pull-right">
+						<div class="right-details">
+                        <a href="http://studioweb.pro/" target="_blank" class="highlighted-link"><? echo $L['developer']; ?></a>
+							<ul>
+								<li>
+									<a href="admin.php?act=modify"><? echo $L['change_password']; ?></a>
+								</li>
+								<li>
+									<a href="admin.php"><? echo $L['admins']; ?></a>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<a href="logout.php" class="button">
+					<i class="icon-signout"></i>
+					<? echo $L['log_out']; ?>
+				</a>
+			</div>
+		</div>
+	</div>
+	<div id="main">

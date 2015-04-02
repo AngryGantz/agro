@@ -1,0 +1,68 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-list-ul"></i> <? echo $L['change_cat']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><? echo $L['change_cat']; ?></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-list-ul"></i>
+								<span><? echo $L['change_cat']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+                           <form method="post" class='form-horizontal form-bordered form-validate' action="type.php?act=update&module=<?=$type[module]?>&typeid=<?=$type[typeid]?>" id="bb">
+									<div class="control-group">
+										<label for="typename" class="control-label"><span class="f_b f_red">*</span> <? echo $L['title']; ?></label>
+										<div class="controls">
+											<input type="text" name="typename" id="typename" value="<?=$type[typename]?>" class="input-xlarge" data-rule-required="true" data-rule-rangelength="[3, 50]">
+										</div>
+										
+									<div class="control-group">
+										<label for="banwords" class="control-label"><? echo $L['keywords']; ?></label>
+										<div class="controls">
+											<textarea name="keywords" id="keywords" rows="5" class="input-block-level"><?=$type[keywords]?></textarea>
+											<br/><span class="tips"><? echo $L['keywords_tip']; ?></span>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="description" class="control-label"><? echo $L['descriptions']; ?></label>
+										<div class="controls">
+											<textarea name="description" id="description" rows="5" class="input-block-level"><?=$type[description]?></textarea>
+										</div>
+									</div>
+									
+									<div class="control-group">
+										<label for="listorder" class="control-label"><? echo $L['sorting']; ?></label>
+										<div class="controls">
+											<input type="text" name="listorder" id="listorder" value="<?=$type[listorder]?>" class="input-small" data-rule-number="true">
+										</div>
+									</div>
+									
+									<div class="form-actions">
+									<input type="submit" name="submit" class='button button-basic-blue button-large' value="<? echo $L['edit']; ?>">
+									<input name="reset" type="reset" id="reset" class='button button-basic button-large' value="<? echo $L['reset']; ?>">
+									</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				</div>
+				</div>
+<? include tpl('footer'); ?>

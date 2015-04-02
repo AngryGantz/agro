@@ -1,0 +1,20 @@
+<div class="well-shadow well-box cream-bg px13 f_gray">
+{$L['mp_total_records']}: {$pager[count]}&nbsp;&nbsp;{$L['mp_displaying_pages']}: <font color="red">{$pager[page]}</font> {$L['mp_of']} {$pager[page_count]}&nbsp;&nbsp;{$L['mp_data_page']}: {$pager[size]}&nbsp;&nbsp;
+</div>
+<div class="page">
+<!--{if $pager[first]}-->
+<a href="{$pager[first]}">{$L['mp_first']}</a>
+<!--{else}--><!--{/if}-->
+
+<!--{if $pager[prev]}-->
+<a href="{$pager[prev]}">{$L['mp_previous']}</a>
+<!--{else}--><!--{/if}-->
+
+<!--{if $pager[next]}-->
+<a href="{$pager[next]}">{$L['mp_next']}</a>
+<!--{else}--><!--{/if}-->
+
+<!--{if $pager[last]}-->
+<a href="{$pager[last]}">{$L['mp_last']}</a>
+<!--{else}--><!--{/if}-->
+</div>

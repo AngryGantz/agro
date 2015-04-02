@@ -1,0 +1,113 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-th"></i> <? echo $L['list']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="info.php"><? echo $L['list']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-th"></i>
+								<span><? echo $L['list']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<div class="highlight-toolbar">
+							<div class="pull-left">
+							<div class="btn-toolbar">
+	    <form class='form-horizontal' name="form1" method="post" action="info.php">
+        <select name="cat" id="cat">
+        <option value="0"><? echo $L['category']; ?></option>
+		<?php echo $cats?>
+        </select>
+        &nbsp;&nbsp;
+        <select name="area" id="area" style="width:140px;">
+          <option value="0"><? echo $L['area']; ?></option>
+			<? echo $area; ?>
+        </select>
+        &nbsp;&nbsp;
+        <select name="type" id="type" style="width:100px;">
+          <option value="0"><? echo $L['status']; ?></option>
+          <option value="1"><? echo $L['active']; ?></option>
+          <option value="2"><? echo $L['moderated']; ?></option>
+          <option value="3"><? echo $L['recommended']; ?></option>
+		  <option value="4"><? echo $L['in_top']; ?></option>
+		</select> 
+        &nbsp;&nbsp;
+        <input name="keywords" type="text" id="keywords" placeholder="<? echo $L['keyword']; ?>">
+		&nbsp;&nbsp;
+        <input name="username" type="text" id="username" placeholder="<? echo $L['login']; ?>" style="width:120px;">
+        &nbsp;&nbsp;
+		<input name='act' type="hidden" value="list">
+        <input name="submit" type="submit" id="submit" class="button button-basic button-large" value="<? echo $L['search']; ?>">
+		 </form>					
+
+							</div>
+							</div>
+							</div>
+							<form action="" method="post" onSubmit="return checkform(this);">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+									<thead>
+										<tr>
+											<th style="text-align: center">#</th>
+											<th style="text-align: center">ID</th>
+											<th style="text-align: center"><? echo $L['title']; ?></th>
+											<th style="text-align: center"><? echo $L['date']; ?></th>
+											<th style="text-align: center"><? echo $L['management']; ?></th>
+										</tr>
+									</thead>
+				<?php
+				foreach($articles AS $row)
+				{
+				?>
+		
+										<tr>
+											<td style="text-align: center"><input name="id[]" type="checkbox" id="id[]" value="<?=$row[id]?>" /></td>
+											<td style="text-align: center"><?=$row[id]?></td>
+											<td style="text-align: left">
+											<?php if($row[is_pro]) { ?><i rel="tooltip" title="<? echo $L['recommended']; ?>" class="icon-thumbs-up active-color"></i>&nbsp;<?php } ?>
+											<?php if($row[is_top]) { ?><i rel="tooltip" title="<? echo $L['in_top']; ?>" class="icon-circle-arrow-up active-color"></i>&nbsp;<?php } ?>
+											<?php if(!$row[is_check]) { ?><i rel="tooltip" title="<? echo $L['moderated']; ?>" class="icon-ban-circle"></i><?php } ?>
+											<a href="../view.php?id=<?=$row[id]?>" target="_blank"><?=$row[title]?></a></td>
+									        <td style="text-align: center"><?=$row[postdate]?></td>
+											<td style="text-align: center">
+											<div class="btn-group">
+											<a href="info.php?act=edit&id=<?=$row[id]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['edit']; ?>"><i class="icon-edit"></i></a>
+											<a href="info.php?act=batch&type=delete&id=<?=$row[id]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['delete']; ?>" onClick="if(!confirm('<? echo $L['delete_confirm']; ?>'))return false;"><i class="icon-remove-circle"></i></a>
+											<a href="info.php?act=view&id=<?=$row[id]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['view']; ?>"><i class="icon-eye-open"></i></a>
+											</div>
+											</td>
+										</tr>
+                <?}?>
+								</table>
+								<div class="bottom-table">
+									<div class="pull-left">
+									<input rel="tooltip" title="<? echo $L['select_all']; ?>" name="checkall" type="checkbox" id="checkall" onClick="CheckAll(this.form)"/>
+									<select name="type" id="type" >
+									  <option value="0"><? echo $L['choice']; ?></option>
+									  <option value="is_check"><? echo $L['activate']; ?></option>
+									  <option value="delete"><? echo $L['delete_choice']; ?></option>
+								    </select>
+									<input type="hidden" name="act" value="batch">
+		                            &nbsp;&nbsp;<input name="submit" type="submit" id="submit" value="<? echo $L['send']; ?>" class="button button-basic-blue" onClick="if(!confirm('<? echo $L['send_confirm_batch_info']; ?>'))return false;">
+									</div>
+
+									</div>
+								</form>
+<? include tpl('page');?>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

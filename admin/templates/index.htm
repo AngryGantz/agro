@@ -1,0 +1,137 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-home"></i> <? echo $L['back_home']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li class='active'><a href="index.php"><? echo $L['back_home']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+			
+			<?if($install){?>			
+			<div class="alert alert-error t_c">
+			<i class="icon-warning-sign"></i>
+			<strong class="px22"><? echo $L['delete_install']; ?> /install</strong>
+			</div>
+			<?}?>
+
+			<div class="content-highlighted">
+				<ul class="quick" data-collapse="collapse">
+					<li>
+						<a href="set_config.php"><img src="img/icons/config.png" alt="<? echo $L['set_config']; ?>" /><span><? echo $L['set_config']; ?></span></a>
+					</li>
+					<li>
+						<a href="member.php"><img src="img/icons/customers.png" alt="<? echo $L['members']; ?>" /><span><? echo $L['members']; ?></span></a>
+					</li>
+					<li>
+						<a href="com.php"><img src="img/icons/library.png" alt="<? echo $L['company']; ?>" /><span><? echo $L['company']; ?></span></a>
+					</li>
+					<li>
+						<a href="info.php"><img src="img/icons/document-library.png" alt="<? echo $L['board']; ?>" /><span><? echo $L['board']; ?></span></a>
+					</li>
+					<li>
+						<a href="article.php"><img src="img/icons/category.png" alt="<? echo $L['articles']; ?>" /><span><? echo $L['articles']; ?></span></a>
+					</li>
+					<li>
+						<a href="static.php"><img src="img/icons/archives.png" alt="<? echo $L['pages']; ?>" /><span><? echo $L['pages']; ?></span></a>
+					</li>
+					<li>
+						<a href="ads.php"><img src="img/icons/advertising.png" alt="<? echo $L['advertising']; ?>" /><span><? echo $L['advertising']; ?></span></a>
+					</li>
+<!-- 					<li>
+						<a href="payonline.php?act=setting"><img src="img/icons/credit-card.png" alt="<? echo $L['finance']; ?>" /><span><? echo $L['finance']; ?></span></a>
+					</li>
+ -->				</ul>
+			</div>
+			<div class="container-fluid" id="awcontent-area">
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-table"></i>
+								<span><? echo $L['information_server']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+													
+		<table class="table table-nomargin table-hover table-bordered">
+		<tr>
+		<th><? echo $L['ip_server']; ?>:</th>
+		<td><strong><?php echo gethostbyname($_SERVER['SERVER_NAME']);?></strong></td>
+		</tr>
+
+		<tr>
+		<th><? echo $L['server']; ?>:</th>
+		<td><strong><?php echo PHP_OS.'&nbsp;'.$_SERVER["SERVER_SOFTWARE"];?></strong> <a href="index.php?act=phpinfo" target="_blank">[PHPINFO]</a></td>
+		</tr>
+								
+		</table>							
+							
+							</div>
+						</div>
+					</div>
+				</div>			
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-table"></i>
+								<span><? echo $L['statistics']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">			
+		<table class="table table-nomargin table-hover table-bordered">
+		<tr>
+		<th><? echo $L['version_dev']; ?>:</th>
+		<td><span class="badge badge-info"><?=$VERSION['version']?></span> <a href="http://studioweb.pro" target="_blank">[<? echo $L['developer']; ?>]</a></td>
+		</tr>
+		
+		
+		<tr>
+		<th><? echo $L['board_s']; ?>:</th>
+		<td><span class="badge"><?=$info_num?></span> <i class="icon-hand-right"></i> <a href="info.php"><? echo $L['view']; ?></a></td>
+		</tr>
+
+
+		<tr>
+		<th><? echo $L['complaints_s']; ?>:</th>
+		<td><span class="badge"><?=$report_num?></span> <i class="icon-hand-right"></i> <a href="report.php"><? echo $L['view']; ?></a></td>
+		</tr>
+
+		<tr>
+		<th><? echo $L['members_s']; ?>:</th>
+		<td><span class="badge"><?=$member_num?></span> <i class="icon-hand-right"></i> <a href="member.php"><? echo $L['view']; ?></a></td>
+		</tr>
+
+		<tr>
+		<th><? echo $L['company_s']; ?>:</th>
+		<td><span class="badge"><?=$com_num?></span> <i class="icon-hand-right"></i> <a href="com.php"><? echo $L['view']; ?></a></td>
+		</tr>
+
+		<tr>
+		<th><? echo $L['articles_s']; ?>:</th>
+		<td><span class="badge"><?=$article_num?></span> <i class="icon-hand-right"></i> <a href="article.php"><? echo $L['view']; ?></a></td>
+		</tr>
+
+		<tr>
+		<th><? echo $L['your_ip']; ?>:</th>
+		<td><strong><?=$admin[lastip]?></strong></td>
+		</tr>
+
+
+		<tr>
+		<th><? echo $L['last_login']; ?>:</th>
+		<td><strong><?=$admin[lastlogin]?></strong></td>
+		</tr>
+								
+		</table>							
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+<? include tpl('footer'); ?>

@@ -1,0 +1,96 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-money"></i> <? echo $L['payment']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="payonline.php?act=list"><? echo $L['payment']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-money"></i>
+								<span><? echo $L['payment']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<form action="" method="post" onSubmit="return checkform(this);">
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+									<thead>
+										<tr>
+											<th style="text-align: center">#</th>
+											<th style="text-align: center">ID</th>
+											<th style="text-align: center"><? echo $L['login']; ?></th>
+											<th style="text-align: center"><? echo $L['amount']; ?></th>
+											<th style="text-align: center"><? echo $L['payments_id']; ?></th>
+											<th style="text-align: center"><? echo $L['status']; ?></th>
+											<th style="text-align: center"><? echo $L['payment_date']; ?></th>
+											<th style="text-align: center"><? echo $L['management']; ?></th>
+										</tr>
+									</thead>
+       
+		<?php 
+		if(is_array($pays))
+		{
+			foreach($pays as $pay)
+			{ 
+		?>
+										<tr>
+											<td style="text-align: center">
+											<?php if($pay['status']==3){?>
+											-
+                                             <?php } else {?>
+											<input name="id[]" type="checkbox" id="id[]" value="<?=$pay[payid]?>" />
+											<?php } ?>
+											</td>
+											<td style="text-align: center"><?=$pay[payid]?></td>
+											<td style="text-align: center"><a href="payonline.php?username=<?=urlencode($pay['username'])?>"><?=$pay['username']?></a></td>
+											<td style="text-align: center"><span class="f_red"><?=$pay['amount']?></span></td>
+											<td style="text-align: center"><?=$pay['paycenter']?></td>
+											<td style="text-align: center"><?=$STATUS[$pay['status']]?>
+											<?php if(!$pay['status']){?><br/>
+											<a href="payonline.php?act=check&payid=<?=$pay['payid']?>"><? echo $L['confirm_payment']; ?></a>
+											<?php } ?>
+											</td>
+											<td style="text-align: center">
+											<?php if($pay['receivetime']){?>
+											<?=$pay['receivetime'] ? date('Y-m-d h:i:s', $pay['receivetime']) : ''?>
+                                             <?php } else {?>
+                                             -
+											<?php } ?>
+											</td>
+											<td style="text-align: center">
+											<div class="btn-group">
+											<a href="payonline.php?act=view&payid=<?=$pay['payid']?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['view']; ?>"><i class="icon-eye-open"></i></a>
+											</div>
+											</td>
+										</tr>
+		<?php
+			} 
+		}
+		?>
+								</table>
+								<div class="bottom-table">
+									<div class="pull-left">
+									<input rel="tooltip" title="<? echo $L['select_all']; ?>" name="checkall" type="checkbox" id="checkall" onClick="CheckAll(this.form)"/>
+									<input type="hidden" name="act" value="delete">
+		                            &nbsp;&nbsp;<input name="submit" type="submit" id="submit" value="<? echo $L['delete']; ?>" class="button button-basic-blue" onClick="if(!confirm('<? echo $L['delete_confirm_batch_article']; ?>'))return false;">
+									</div>
+
+									</div>
+								</form>
+<? include tpl('page');?>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+<? include tpl('footer'); ?>	

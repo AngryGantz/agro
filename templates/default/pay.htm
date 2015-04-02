@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]>    <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
+    <head>
+        <meta charset="{$charset}">
+        <title>{$seo['title']}</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1">
+        <meta name="description" content="{$seo['description']}">
+        <meta name="keywords" content="{$seo['keywords']}">
+        <!-- Styles -->
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/unsemantic.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/responsive.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome.min.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/juicy.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/js/juicy/css/themes/shoppie/style.css" type="text/css">
+        <!--[if IE 7]>
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/font-awesome/css/font-awesome-ie7.min.css">
+        <![endif]-->
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/colors/red.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/base.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/layout.css" type="text/css">
+        <link rel="stylesheet" href="templates/{$CFG[tplname]}/style/pages/my-profile.css" type="text/css">
+        <!-- Fav and touch icons -->
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="apple-touch-icon-precomposed" sizes="120x120" href="images/ico/apple-touch-icon-precomposed.png">
+        <!-- HTML5 Shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+        <script src="templates/{$CFG[tplname]}/js/html5shim.js"></script>
+        <![endif]-->
+    </head>
+    <body class="body-background2 content-font dark-color">
+    {template top}
+        <section class="page-content">
+            <!--  Page block  -->
+            <div class="page-block page-block-top light-bg grid-container">
+                <div class="breadcrumbs grid-100 middle-color">
+                    <a href="index.php" class="dark-color active-hover">{$L['f_home']}</a>
+                    <a href="member.php" class="dark-color active-hover">{$L['f_control_panel']}</a>
+                   <strong class="active-color">{$L['fill_up_balance']}</strong>
+                </div>
+            </div> <!-- END Page block  -->
+
+            <!-- Page block content  -->
+            <div class="page-block page-block-bottom cream-bg grid-container">
+                <div class="sidebar-shadow push-25"></div>
+					{template member_left}
+               <!-- Content  --> 
+               <div class="content-with-sidebar grid-75">
+                    <form class="content-form margin-bottom" action="member.php?act=confirm" name="payform" method="POST" onSubmit="return chkpayform()">
+                            
+                        <div class="with-shadow grid-100 light-bg margin-bottom clearfix">
+                            <div class="content-page grid-100">
+                                <h2 class="bigger-header with-border subheader-font">
+                                    {$L['fill_up_balance_go']}
+                                </h2>
+                                <div class="form-input">
+                                    <label for="amount" class="middle-color">{$L['amount']} <span class="active-color">*</span></label>
+                                    <input type="text" class="text-input dark-color light-bg" name="amount" id="amount" value="{$amount}" style="width:100px;"/> <span class="f_b px14 f_gray currency">{$CFG['currency']}</span>
+                                </div>
+								
+                                <div class="form-input">
+                                    <label for="areaid" class="middle-color">{$L['payment_system']} <span class="active-color">*</span></label>
+								<div class="custom-selectbox dark-color light-gradient active-hover">
+								<select name="paycenter" id="paycenter">
+								{loop $payonline_setting $paycenter $pay}
+								<option value="{$pay[paycenter]}" {$selected[$paycenter]}>{$pay[name]}</option>
+								{/loop}
+								</select>
+								</div>
+                                </div>
+
+                        </div>
+
+                        <div class="form-submit">
+                            <button type="submit" id="submit" class="button-normal uppercase light-color middle-gradient dark-gradient-hover">{$L['further']}</button>
+                        </div>    
+                    </form>
+                  <div class="topmargin10"></div>
+               </div><!-- END Content  --> 
+           </div> <!-- END Page block  -->
+<script type="text/javascript">
+function chkpayform(){
+	if(document.payform.amount.value==""){
+		alert('{$L['amount_empty']}');
+		document.payform.amount.focus();
+		return false;
+	}
+
+	if(document.payform.paycenter.value==0){
+		alert('{$L['payment_system_empty']}');
+		document.payform.paycenter.focus();
+		return false;
+	}
+
+}
+</script>
+          
+       </section>
+{template footer}

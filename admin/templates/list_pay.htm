@@ -1,0 +1,89 @@
+<? include tpl('header'); ?>
+<? include tpl('nav'); ?>
+		<div id="awcontent">
+			<div class="page-header">
+				<div class="pull-left">
+					<h4><i class="icon-th"></i> <? echo $L['transactions']; ?></h4>
+				</div>
+				<div class="pull-right">
+					<ul class="bread">
+						<li><a href="index.php"><? echo $L['back_home']; ?></a><span class="divider">/</span></li>
+						<li class='active'><a href="pay.php"><? echo $L['transactions']; ?></a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="container-fluid" id="awcontent-area">	
+				<div class="row-fluid">
+					<div class="span12">
+						<div class="box">
+							<div class="box-head">
+								<i class="icon-th"></i>
+								<span><? echo $L['transactions']; ?></span>
+							</div>
+							<div class="box-body box-body-nopadding">
+							<div class="highlight-toolbar">
+							<div class="pull-left">
+							<div class="btn-toolbar">
+     <form class='form-horizontal' name="search" method="post">
+        <select name="typeid" id="typeid" style="width:120px;">
+		<option value="0"><? echo $L['operation']; ?></option>
+		<option value="1"><? echo $L['coming']; ?></option>
+		<option value="2"><? echo $L['expense']; ?></option>
+        </select>
+		&nbsp;&nbsp;
+        <input name="username" type="text" id="username" value="<?=$username?>" placeholder="<? echo $L['login']; ?>" style="width:150px;">
+&nbsp;&nbsp;
+<input name="fromdate" type="text" id="fromdate" placeholder="<? echo $L['start_date']; ?>" class="input-medium datepick" data-date="2012-12-02" data-date-format="yyyy-mm-dd" value="<?=$fromdate?>" readonly="readonly">
+&nbsp;&nbsp;
+<input name="todate" type="text" id="todate" placeholder="<? echo $L['expiration_date']; ?>" class="input-medium datepick" data-date="2012-12-02" data-date-format="yyyy-mm-dd" value="<?=$todate?>" readonly="readonly">
+&nbsp;&nbsp;
+<input type="text" name="keywords" style="width:180px;" placeholder="<? echo $L['keyword']; ?>" value="<?=$keywords?>">
+&nbsp;&nbsp;
+<input name="search" type="submit" class="button button-basic button-large" value="<? echo $L['search']; ?>">
+</form>
+							</div>
+							</div>
+							</div>
+								<table class="table table-nomargin table-hover table-bordered table-pagination">
+									<thead>
+										<tr>
+											<th style="text-align: center"><? echo $L['login']; ?></th>
+											<th style="text-align: center"><? echo $L['amount']; ?></th>
+											<th style="text-align: center"><? echo $L['balance']; ?></th>
+											<th style="text-align: center"><? echo $L['operation']; ?></th>
+											<th style="text-align: center"><? echo $L['date']; ?></th>
+											<th style="text-align: center"><? echo $L['note']; ?></th>
+											<th style="text-align: center"><? echo $L['management']; ?></th>
+										</tr>
+									</thead>
+			<?php
+			foreach($pays AS $row)
+			{
+			?>
+										<tr>
+											<td style="text-align: center"><?=$row['username']?></td>
+											<td style="text-align: center"><span class="f_red"><?=$row['amount']?></span></td>
+											<td style="text-align: center"><span class="f_green"><?=$row['balance']?></span></td>
+											<td style="text-align: center"><?=$row[paytype]?></td>
+											<td style="text-align: center"><?=$row['date']?></td>
+											<td style="text-align: left"><?=$row['note']?></td>
+											<td style="text-align: center">
+											<div class="btn-group">
+											<a href="pay.php?act=delete&id=<?=$row[payid]?>" class="button button-basic button-icon" rel="tooltip" title="<? echo $L['delete']; ?>" onClick="if(!confirm('<? echo $L['delete_confirm']; ?>'))return false;"><i class="icon-remove-circle"></i></a>
+											</div>
+											</td>
+										</tr>
+           <?}?>			
+								</table>
+<? include tpl('page');?>
+							</div>
+						</div>
+					</div>
+				</div>
+				</div>
+				</div>
+	<!-- datepicker plugin -->
+	<link rel="stylesheet" href="css/datepicker.css">
+		<!-- datepicker plugin -->
+	<script src="js/bootstrap-datepicker.min.js"></script>
+<? include tpl('footer'); ?>	
